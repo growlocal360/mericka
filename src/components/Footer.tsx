@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Linkedin, Facebook, Instagram, Phone, Mail, MapPin, ArrowUpRight } from "lucide-react";
+import { Linkedin, Facebook, Instagram, Phone, Mail, MapPin } from "lucide-react";
 import { brand, services } from "@/lib/brand";
+import GetInTouchButton from "@/components/GetInTouchButton";
 
 const companyLinks = [
   { href: "/company", label: "About" },
@@ -76,13 +77,7 @@ export default function Footer() {
             </h2>
           </div>
           <div className="flex flex-wrap items-center gap-3">
-            <Link
-              href="/contact"
-              className="group inline-flex items-center gap-2 rounded-lg bg-brand-highlight px-6 py-3.5 font-semibold text-white transition hover:brightness-110"
-            >
-              Collaborate Now
-              <ArrowUpRight className="h-5 w-5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </Link>
+            <GetInTouchButton />
             <a
               href={brand.phoneHref}
               className="inline-flex items-center gap-2 rounded-lg border border-white/20 px-6 py-3.5 font-semibold text-white transition hover:bg-white/10"

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Shield, Award, Users } from "lucide-react";
 import { brand } from "@/lib/brand";
 import { safeList } from "@/lib/supabase/safe";
+import GetInTouchButton from "@/components/GetInTouchButton";
 
 type TeamMember = {
   id: string;
@@ -88,12 +89,7 @@ export default async function CompanyPage() {
           <p className="mt-4 text-brand-600 max-w-xl mx-auto">
             Whether you&apos;re scoping a new build or planning your next outage, we&apos;d like to hear about it.
           </p>
-          <Link
-            href="/contact"
-            className="mt-6 inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-brand-highlight text-white font-semibold hover:brightness-110 transition-all"
-          >
-            Contact us
-          </Link>
+          <GetInTouchButton className="mt-6" />
         </section>
       </div>
     </div>
