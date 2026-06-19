@@ -34,14 +34,14 @@ export default function Navigation() {
   return (
     <header
       className={clsx(
-        "fixed top-0 left-0 right-0 z-50 h-20 transition-all duration-300 bg-[linear-gradient(to_right,#24273e,#1f5199)]",
+        "fixed top-0 left-0 right-0 z-50 h-20 transition-all duration-300 bg-[linear-gradient(to_right,#ffffffcf,#0d3676,#022965)]",
         scrolled ? "shadow-lg border-b border-white/10" : ""
       )}
     >
       <div className="max-w-7xl mx-auto h-full px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         <Link href="/" className="flex items-center" aria-label={brand.short}>
           <Image
-            src={brand.logoWhite}
+            src={brand.logo}
             alt={brand.short}
             width={200}
             height={45}
