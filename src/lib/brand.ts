@@ -101,14 +101,18 @@ export const stats = [
 ] as const;
 
 export const marqueeImages = [
-  "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=600&q=70",
-  "https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=600&q=70",
-  "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=600&q=70",
-  "https://images.unsplash.com/photo-1581092919535-7c5dca6f7d92?auto=format&fit=crop&w=600&q=70",
-  "https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=600&q=70",
-  "https://images.unsplash.com/photo-1573164574511-73c773193279?auto=format&fit=crop&w=600&q=70",
-  "https://images.unsplash.com/photo-1518709268805-4e9042af2176?auto=format&fit=crop&w=600&q=70",
-  "https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=600&q=70",
+  "/images/scaffolding.jpg",
+  "/images/product-page-scaffolding-and-turnaround.jpg",
+  "/images/paint-spray.jpg",
+  "/images/Paint-spray-tank-roof.jpg",
+  "/images/pipes.jpg",
+  "/images/tank-services.jpg",
+  "/images/Fireproofing.jpg",
+  "/images/scaffold-background-2.jpg",
+  "/images/Nested-Maintenance-Background-Picture.jpg",
+  "/images/painting-dome.jpg",
+  "/images/more-pipes.jpg",
+  "/images/mericka-group-employees.jpg",
 ];
 
 export const heroImage =
