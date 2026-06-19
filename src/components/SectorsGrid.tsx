@@ -47,7 +47,7 @@ export default function SectorsGrid() {
                 transition={{ duration: 0.6, delay: i * 0.1 }}
               >
                 <Link
-                  href={`/sectors/${s.slug}`}
+                  href={`/${s.slug}`}
                   className="block h-full bg-white rounded-2xl p-8 border border-brand-100 hover:border-brand-accent/50 hover:shadow-xl transition-all group"
                 >
                   <div className="inline-flex bg-brand-accent/10 rounded-xl p-3 mb-5">

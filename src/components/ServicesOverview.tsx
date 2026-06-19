@@ -39,7 +39,7 @@ export default function ServicesOverview() {
               transition={{ duration: 0.6, delay: index * 0.1 }}
             >
               <Link
-                href={`/services/${s.slug}`}
+                href={`/${s.slug}`}
                 className="relative block h-96 rounded-2xl overflow-hidden group"
               >
                 <Image

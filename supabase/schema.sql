@@ -58,11 +58,15 @@ create table sectors (
   description jsonb,
   icon text,
   hero_image_url text,
+  intro_image_url text,
   display_order integer default 0,
   published boolean default false,
   created_at timestamptz default now(),
   updated_at timestamptz default now()
 );
+
+-- Additive migration for an existing/live database (safe to run on its own):
+alter table sectors add column if not exists intro_image_url text;
 
 create table projects (
   id uuid default uuid_generate_v4() primary key,
@@ -205,9 +209,13 @@ insert into sectors (slug, name, icon, display_order, published) values
   ('midstream-oil-gas', 'Midstream Oil & Gas', 'Droplet', 6, true);
 
 insert into services (slug, name, tagline, phase, display_order, published) values
-  ('pre-construction', 'Pre-Construction Services', 'Estimating, planning, and constructability review.', 'pre-construction', 1, true),
-  ('execution', 'Execution Services', 'Scaffolding, coatings, insulation, fireproofing.', 'execution', 2, true),
-  ('maintenance-outage', 'Maintenance and Outage Services', 'Turnaround support, inspection, emergency callouts.', 'maintenance-outage', 3, true);
+  ('scaffolding-and-access-solutions', 'Scaffolding & Access Solutions', 'Scaffolding, elevated work platforms, stair towers, and rope access.', 'execution', 1, true),
+  ('turnaround-and-outage-support', 'Turnaround & Outage Support', 'Data-driven soft-craft execution for turnarounds and outages.', 'maintenance-outage', 2, true),
+  ('nested-facility-maintenance-programs', 'Nested Facility Maintenance Programs', 'Multi-skilled crews and data-driven planning for ongoing site maintenance.', 'maintenance-outage', 3, true),
+  ('subcontracting-partnerships', 'Subcontracting Partnerships', 'A trusted soft-craft ally for your next project, on schedule and on budget.', 'execution', 4, true),
+  ('comprehensive-storage-tank-services', 'Comprehensive Storage Tank Services', 'Inspection, repair, coatings, and linings that protect your assets.', 'execution', 5, true),
+  ('pipeline-maintenance-programs', 'Pipeline Maintenance Programs', 'Maintenance programs that keep pipelines safe, compliant, and running.', 'maintenance-outage', 6, true);
 
--- IMPORTANT: seed your admin email before /admin will let you in:
--- insert into approved_emails (email) values ('david@graphicworksdesign.com');
+-- Admin allowlist — required before /admin will let you log in:
+insert into approved_emails (email) values ('david@graphicworksdesign.com')
+  on conflict (email) do nothing;

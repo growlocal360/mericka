@@ -13,9 +13,11 @@ type Service = {
   display_order: number;
 };
 
+export const revalidate = 60;
+
 export const metadata = {
   title: "Services | Mericka Group",
-  description: "Pre-construction, execution, and maintenance & outage services.",
+  description: "Scaffolding, tank services, turnaround, and maintenance disciplines.",
 };
 
 export default async function ServicesIndex() {
@@ -55,7 +57,7 @@ export default async function ServicesIndex() {
           {list.map((s) => (
             <Link
               key={s.slug}
-              href={`/services/${s.slug}`}
+              href={`/${s.slug}`}
               className="group block bg-white rounded-2xl overflow-hidden border border-brand-100 hover:shadow-xl transition-shadow"
             >
               <div className="relative h-56 bg-brand-100">

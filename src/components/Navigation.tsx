@@ -59,7 +59,7 @@ export default function Navigation() {
             onEnter={() => setOpen("services")}
             onLeave={() => setOpen(null)}
             href="/services"
-            items={services.map((s) => ({ href: `/services/${s.slug}`, label: s.title }))}
+            items={services.map((s) => ({ href: `/${s.slug}`, label: s.title }))}
           />
           <DropdownLink
             label="Sectors"
@@ -67,7 +67,7 @@ export default function Navigation() {
             onEnter={() => setOpen("sectors")}
             onLeave={() => setOpen(null)}
             href="/sectors"
-            items={sectors.map((s) => ({ href: `/sectors/${s.slug}`, label: s.name }))}
+            items={sectors.map((s) => ({ href: `/${s.slug}`, label: s.name }))}
           />
           <DropdownLink
             label="Company"
@@ -125,8 +125,8 @@ export default function Navigation() {
               transition={{ duration: 0.3, delay: 0.1 }}
               className="p-6 flex flex-col gap-1"
             >
-              <MobileGroup label="Services" href="/services" items={services.map((s) => ({ href: `/services/${s.slug}`, label: s.title }))} onClick={() => setMobileOpen(false)} />
-              <MobileGroup label="Sectors" href="/sectors" items={sectors.map((s) => ({ href: `/sectors/${s.slug}`, label: s.name }))} onClick={() => setMobileOpen(false)} />
+              <MobileGroup label="Services" href="/services" items={services.map((s) => ({ href: `/${s.slug}`, label: s.title }))} onClick={() => setMobileOpen(false)} />
+              <MobileGroup label="Sectors" href="/sectors" items={sectors.map((s) => ({ href: `/${s.slug}`, label: s.name }))} onClick={() => setMobileOpen(false)} />
               <MobileGroup label="Company" href="/company" items={companyLinks} onClick={() => setMobileOpen(false)} />
               <a href={brand.phoneHref} className="mt-6 flex items-center gap-2 text-brand-200 hover:text-brand-highlight transition-colors py-3">
                 <Phone className="w-5 h-5" /> {brand.phone}
