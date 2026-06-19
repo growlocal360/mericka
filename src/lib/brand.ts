@@ -16,37 +16,37 @@ export const services = [
   {
     title: "Scaffolding & Access Solutions",
     slug: "scaffolding-and-access-solutions",
-    img: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=70",
+    img: "/images/scaffolding.jpg",
     points: ["Scaffold erection", "Elevated work platforms", "Stair towers & rope access"],
   },
   {
     title: "Turnaround & Outage Support",
     slug: "turnaround-and-outage-support",
-    img: "https://images.unsplash.com/photo-1581092919535-7c5dca6f7d92?auto=format&fit=crop&w=1200&q=70",
+    img: "/images/product-page-scaffolding-and-turnaround.jpg",
     points: ["Planned turnarounds", "Outage execution", "Emergency callouts"],
   },
   {
     title: "Nested Facility Maintenance Programs",
     slug: "nested-facility-maintenance-programs",
-    img: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=1200&q=70",
+    img: "/images/Nested-Maintenance-Background-Picture.jpg",
     points: ["Multi-skilled crews", "Data-driven planning", "On-site coverage"],
   },
   {
     title: "Subcontracting Partnerships",
     slug: "subcontracting-partnerships",
-    img: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?auto=format&fit=crop&w=1200&q=70",
+    img: "/images/scaffold-background-2.jpg",
     points: ["Soft-craft labor", "Schedule reliability", "A trusted ally"],
   },
   {
     title: "Comprehensive Storage Tank Services",
     slug: "comprehensive-storage-tank-services",
-    img: "https://images.unsplash.com/photo-1573164574511-73c773193279?auto=format&fit=crop&w=1200&q=70",
+    img: "/images/tank-services.jpg",
     points: ["Inspection & repair", "Coatings & linings", "Asset protection"],
   },
   {
     title: "Pipeline Maintenance Programs",
     slug: "pipeline-maintenance-programs",
-    img: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=70",
+    img: "/images/more-pipes.jpg",
     points: ["Maintenance programs", "Compliance support", "Integrity management"],
   },
 ] as const;
