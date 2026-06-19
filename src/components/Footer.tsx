@@ -16,12 +16,12 @@ const companyLinks = [
 export default function Footer() {
   const year = new Date().getFullYear();
   return (
-    <footer className="bg-brand-950 border-t border-brand-800 py-16 text-brand-300">
+    <footer className="bg-[linear-gradient(to_right,#0C3676,#022a64)] border-t border-white/10 py-16 text-brand-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
           <div>
             <Image
-              src={brand.logo}
+              src={brand.logoWhite}
               alt={brand.short}
               width={200}
               height={45}
@@ -96,7 +96,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-brand-800 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-brand-400">
+        <div className="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-brand-400">
           <p>© {year} {brand.name}. All rights reserved.</p>
           <Link href="/privacy" className="hover:text-brand-100 transition-colors">
             Privacy Policy
