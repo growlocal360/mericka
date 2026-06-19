@@ -41,6 +41,10 @@ create table services (
   slug text unique not null,
   name text not null,
   tagline text,
+  positioning_headline text,
+  benefits text[] default '{}',
+  capabilities text[] default '{}',
+  summary text,
   description jsonb,
   hero_image_url text,
   icon text,
@@ -50,6 +54,12 @@ create table services (
   created_at timestamptz default now(),
   updated_at timestamptz default now()
 );
+
+-- Additive migration for an existing/live database (safe to run on its own):
+alter table services add column if not exists positioning_headline text;
+alter table services add column if not exists benefits text[] default '{}';
+alter table services add column if not exists capabilities text[] default '{}';
+alter table services add column if not exists summary text;
 
 create table sectors (
   id uuid default uuid_generate_v4() primary key,

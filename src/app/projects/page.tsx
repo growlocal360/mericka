@@ -13,6 +13,8 @@ type Project = {
   sectors: string[] | null;
 };
 
+export const revalidate = 60;
+
 export const metadata = {
   title: "Projects | Mericka Group",
   description: "Recent industrial projects by Mericka Group.",
