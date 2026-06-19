@@ -19,6 +19,9 @@
   --color-brand-accent: #66b3eb;
   --color-brand-highlight: #be1f24;
 
+  /* Dark section background (Merickan Way, Stats, etc.) — used site-wide */
+  --color-brand-dark: #0f284e;
+
   /* Fonts (CSS vars set by next/font in layout.tsx) */
   --font-sans: var(--font-brand-sans);
   --font-mono: var(--font-brand-mono);

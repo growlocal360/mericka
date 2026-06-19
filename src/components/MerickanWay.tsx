@@ -24,7 +24,7 @@ const STEPS = [
 
 export default function MerickanWay() {
   return (
-    <section className="py-20 sm:py-24 bg-brand-950">
+    <section className="py-20 sm:py-24 bg-brand-dark">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
