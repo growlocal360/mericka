@@ -3,6 +3,7 @@ import Image from "next/image";
 import {
   LayoutDashboard,
   Wrench,
+  Layers,
   Factory,
   FolderGit2,
   Newspaper,
@@ -18,6 +19,7 @@ import { signOutAction } from "./actions";
 const nav = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
   { href: "/admin/services", label: "Services", icon: Wrench },
+  { href: "/admin/capabilities", label: "Capabilities", icon: Layers },
   { href: "/admin/sectors", label: "Sectors", icon: Factory },
   { href: "/admin/projects", label: "Projects", icon: FolderGit2 },
   { href: "/admin/news", label: "News & Blog", icon: Newspaper },

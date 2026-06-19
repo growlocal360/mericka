@@ -6,6 +6,7 @@ import { safeSingle, safeList } from "@/lib/supabase/safe";
 import {
   sectors as sectorFallback,
   services as serviceFallback,
+  crafts as craftFallback,
 } from "@/lib/brand";
 import SectorBody, {
   type SectorView,
@@ -72,6 +73,35 @@ async function fetchService(slug: string): Promise<ServiceView | null> {
   };
 }
 
+async function fetchCraft(slug: string): Promise<ServiceView | null> {
+  const db = await safeSingle<ServiceView>((sb) =>
+    sb
+      .from("crafts")
+      .select(
+        "slug, name, tagline, positioning_headline, benefits, capabilities, summary, description, hero_image_url"
+      )
+      .eq("slug", slug)
+      .eq("published", true)
+      .single()
+  );
+  if (db) return { ...db, phase: null };
+
+  const fb = craftFallback.find((c) => c.slug === slug);
+  if (!fb) return null;
+  return {
+    slug: fb.slug,
+    name: fb.title,
+    tagline: fb.points.join(" · "),
+    positioning_headline: null,
+    benefits: [...fb.points],
+    capabilities: null,
+    summary: null,
+    description: null,
+    hero_image_url: fb.img,
+    phase: null,
+  };
+}
+
 async function fetchServiceCards(): Promise<ServiceCard[]> {
   const db = await safeList<ServiceCard>((sb) =>
     sb
@@ -94,20 +124,25 @@ async function fetchServiceCards(): Promise<ServiceCard[]> {
 /* --------------------------- static generation --------------------------- */
 
 export async function generateStaticParams() {
-  const [dbSectors, dbServices] = await Promise.all([
+  const [dbSectors, dbServices, dbCrafts] = await Promise.all([
     safeList<{ slug: string }>((sb) =>
       sb.from("sectors").select("slug").eq("published", true)
     ),
     safeList<{ slug: string }>((sb) =>
       sb.from("services").select("slug").eq("published", true)
     ),
+    safeList<{ slug: string }>((sb) =>
+      sb.from("crafts").select("slug").eq("published", true)
+    ),
   ]);
 
   const slugs = new Set<string>([
     ...sectorFallback.map((s) => s.slug),
     ...serviceFallback.map((s) => s.slug),
+    ...craftFallback.map((s) => s.slug),
     ...dbSectors.map((s) => s.slug),
     ...dbServices.map((s) => s.slug),
+    ...dbCrafts.map((s) => s.slug),
   ]);
 
   return [...slugs].map((slug) => ({ slug }));
@@ -133,6 +168,14 @@ export async function generateMetadata({
     return {
       title: `${service.name} | Mericka Group`,
       description: service.tagline ?? undefined,
+    };
+  }
+
+  const craft = await fetchCraft(slug);
+  if (craft) {
+    return {
+      title: `${craft.name} | Mericka Group`,
+      description: craft.tagline ?? undefined,
     };
   }
 
@@ -216,6 +259,22 @@ export default async function FlatPage({
           backLabel="All Services"
         />
         <ServiceBody service={service} />
+        <CTASection />
+      </article>
+    );
+  }
+
+  const craft = await fetchCraft(slug);
+  if (craft) {
+    return (
+      <article>
+        <Hero
+          title={craft.name}
+          imageUrl={craft.hero_image_url}
+          backHref="/energy-services"
+          backLabel="Energy Services"
+        />
+        <ServiceBody service={craft} />
         <CTASection />
       </article>
     );

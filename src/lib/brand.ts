@@ -50,6 +50,33 @@ export const services = [
   },
 ] as const;
 
+export const crafts = [
+  {
+    title: "Scaffolding",
+    slug: "scaffolding",
+    img: "/images/scaffolding.jpg",
+    points: ["Work at any height", "Stair towers & platforms", "Rope access"],
+  },
+  {
+    title: "Industrial Coatings & Painting",
+    slug: "industrial-coatings",
+    img: "/images/paint-spray.jpg",
+    points: ["Blasting & surface prep", "Protective coatings", "Tank liners"],
+  },
+  {
+    title: "Insulation",
+    slug: "insulation",
+    img: "/images/pipes.jpg",
+    points: ["Hot & cold systems", "Removable blankets", "Jacketing"],
+  },
+  {
+    title: "Fireproofing",
+    slug: "fireproofing",
+    img: "/images/Fireproofing.jpg",
+    points: ["Cementitious", "Intumescent", "Steel & vessel skirts"],
+  },
+] as const;
+
 export const sectors = [
   { name: "Downstream Oil & Gas", slug: "downstream-oil-gas", icon: "Waves",
     description: "Refining, processing, and product distribution facilities operating around the clock." },
