@@ -43,6 +43,9 @@ export default function EntityForm({ entity, initial, mode }: Props) {
   }
 
   function autoSlug() {
+    // Only entities that actually have a slug column should get an auto slug
+    // (team_members and locations don't).
+    if (!entity.fields.some((f) => f.name === "slug")) return;
     const titleVal = state[entity.titleField];
     if (typeof titleVal !== "string" || !titleVal) return;
     set("slug", slugify(titleVal, { lower: true, strict: true }));
