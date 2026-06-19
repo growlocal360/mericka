@@ -48,7 +48,7 @@ export default function MerickanWay() {
               transition={{ duration: 0.6, delay: i * 0.1 }}
               className="relative rounded-2xl border border-brand-800 bg-brand-900 p-8"
             >
-              <span className="text-5xl font-bold text-brand-accent/30">{step.n}</span>
+              <span className="text-5xl font-bold text-brand-highlight">{step.n}</span>
               <h3 className="mt-4 text-2xl font-bold text-white">{step.title}</h3>
               <p className="mt-3 text-brand-300 leading-relaxed">{step.body}</p>
             </motion.div>
