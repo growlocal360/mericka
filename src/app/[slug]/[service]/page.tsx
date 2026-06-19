@@ -6,6 +6,7 @@ import { ChevronRight } from "lucide-react";
 import { safeSingle, safeList } from "@/lib/supabase/safe";
 import { sectors, services } from "@/lib/brand";
 import ArticleContent from "@/components/editor/ArticleContent";
+import MerickanWay from "@/components/MerickanWay";
 import CTASection from "@/components/CTASection";
 
 export const revalidate = 60;
@@ -103,6 +104,7 @@ export default async function SectorServicePage({
         )}
       </div>
 
+      <MerickanWay />
       <CTASection />
     </article>
   );
