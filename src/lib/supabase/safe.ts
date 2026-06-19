@@ -1,18 +1,21 @@
-import { createClient } from "@/lib/supabase/server";
+import { createStaticClient } from "@/lib/supabase/static";
 
-type SbClient = Awaited<ReturnType<typeof createClient>>;
+type SbClient = ReturnType<typeof createStaticClient>;
 type Awaitable<T> = T | Promise<T> | PromiseLike<T>;
 
 /**
- * Helper that swallows Supabase errors when the project isn't configured yet
- * (e.g. .env.local still holds placeholder values). Returns `[]` on failure
- * so list pages still render during local bring-up.
+ * Helpers for PUBLIC reads. Backed by the cookie-free static client so the
+ * pages that use them can be statically generated / served via ISR.
+ *
+ * They also swallow Supabase errors when the project isn't configured yet
+ * (e.g. tables not created), returning `[]` / `null` so pages still render
+ * from `brand.ts` fallback data during bring-up.
  */
 export async function safeList<T = unknown>(
   builder: (sb: SbClient) => Awaitable<{ data: T[] | null; error: unknown }>
 ): Promise<T[]> {
   try {
-    const sb = await createClient();
+    const sb = createStaticClient();
     const { data, error } = await builder(sb);
     if (error || !data) return [];
     return data;
@@ -25,7 +28,7 @@ export async function safeSingle<T = unknown>(
   builder: (sb: SbClient) => Awaitable<{ data: T | null; error: unknown }>
 ): Promise<T | null> {
   try {
-    const sb = await createClient();
+    const sb = createStaticClient();
     const { data, error } = await builder(sb);
     if (error) return null;
     return data;

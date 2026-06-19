@@ -76,6 +76,7 @@ export const ENTITIES: Record<EntityKey, EntityConfig> = {
       { name: "slug", label: "Slug", kind: "text", required: true },
       { name: "icon", label: "Lucide Icon Name", kind: "text" },
       { name: "hero_image_url", label: "Hero Image", kind: "image" },
+      { name: "intro_image_url", label: "Intro Section Image", kind: "image" },
       { name: "description", label: "Description", kind: "rich" },
       { name: "display_order", label: "Display Order", kind: "number" },
       { name: "published", label: "Published", kind: "boolean" },
