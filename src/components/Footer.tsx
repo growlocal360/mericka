@@ -16,7 +16,7 @@ const companyLinks = [
 export default function Footer() {
   const year = new Date().getFullYear();
   return (
-    <footer className="bg-[linear-gradient(to_right,#0C3676,#022a64)] border-t border-white/10 py-16 text-brand-300">
+    <footer className="bg-[linear-gradient(to_right,#0d3676,#151725)] border-t border-white/10 py-16 text-brand-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
           <div>
