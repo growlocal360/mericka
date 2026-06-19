@@ -1,10 +1,11 @@
 import Link from "next/link";
-import { ArrowRight, Wrench, Layers, Factory, FolderGit2, Newspaper, Briefcase, Users, MapPin, Inbox } from "lucide-react";
+import { ArrowRight, Wrench, Layers, Factory, LayoutGrid, FolderGit2, Newspaper, Briefcase, Users, MapPin, Inbox } from "lucide-react";
 
 const tiles = [
   { href: "/admin/services", label: "Services", icon: Wrench },
   { href: "/admin/capabilities", label: "Capabilities", icon: Layers },
   { href: "/admin/sectors", label: "Sectors", icon: Factory },
+  { href: "/admin/sector_services", label: "Sector Services", icon: LayoutGrid },
   { href: "/admin/projects", label: "Projects", icon: FolderGit2 },
   { href: "/admin/news", label: "News & Blog", icon: Newspaper },
   { href: "/admin/careers", label: "Careers", icon: Briefcase },

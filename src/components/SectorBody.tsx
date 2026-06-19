@@ -31,9 +31,11 @@ const fadeUp = {
 export default function SectorBody({
   sector,
   services,
+  comboServices = [],
 }: {
   sector: SectorView;
   services: ServiceCard[];
+  comboServices?: string[];
 }) {
   const hasDescription = sector.description != null;
   const introImage = sector.intro_image_url ?? sector.hero_image_url;
@@ -113,7 +115,11 @@ export default function SectorBody({
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
                 <Link
-                  href={`/${s.slug}`}
+                  href={
+                    comboServices.includes(s.slug)
+                      ? `/${sector.slug}/${s.slug}`
+                      : `/${s.slug}`
+                  }
                   className="relative block h-96 rounded-2xl overflow-hidden group bg-brand-900"
                 >
                   {s.hero_image_url && (

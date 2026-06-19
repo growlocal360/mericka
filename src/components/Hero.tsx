@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -7,6 +8,18 @@ import { Phone, ArrowRight, Shield } from "lucide-react";
 import { brand, heroImage } from "@/lib/brand";
 
 export default function Hero() {
+  // Desktop only: layer a background video over the still image. Mobile keeps
+  // the image and never loads the video (matchMedia gates the element entirely).
+  const [showVideo, setShowVideo] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 1024px)");
+    const update = () => setShowVideo(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden bg-brand-900">
       <Image
@@ -17,6 +30,19 @@ export default function Hero() {
         sizes="100vw"
         className="object-cover"
       />
+      {showVideo && (
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          aria-hidden
+          className="absolute inset-0 h-full w-full object-cover"
+        >
+          <source src="/video/bgVideo1.webm" type="video/webm" />
+          <source src="/video/bgVideo1.mp4" type="video/mp4" />
+        </video>
+      )}
       <div className="absolute inset-0 bg-gradient-to-b from-brand-900/85 via-brand-900/75 to-brand-950/85" />
 
       <div className="relative max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-32 z-10">
