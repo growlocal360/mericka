@@ -12,6 +12,8 @@ type TeamMember = {
   photo_url: string | null;
 };
 
+export const revalidate = 60;
+
 export const metadata = { title: "Company | Mericka Group" };
 
 export default async function CompanyPage() {
