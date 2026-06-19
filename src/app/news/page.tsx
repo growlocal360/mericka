@@ -13,6 +13,8 @@ type Article = {
   published_at: string | null;
 };
 
+export const revalidate = 60;
+
 export const metadata = { title: "News | Mericka Group" };
 
 export default async function NewsIndex() {

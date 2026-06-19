@@ -11,6 +11,8 @@ type Job = {
   employment_type: string | null;
 };
 
+export const revalidate = 60;
+
 export const metadata = { title: "Careers | Mericka Group" };
 
 export default async function CareersIndex() {

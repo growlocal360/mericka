@@ -47,7 +47,9 @@ async function fetchService(slug: string): Promise<ServiceView | null> {
   const db = await safeSingle<ServiceView>((sb) =>
     sb
       .from("services")
-      .select("slug, name, tagline, description, hero_image_url, phase")
+      .select(
+        "slug, name, tagline, positioning_headline, benefits, capabilities, summary, description, hero_image_url, phase"
+      )
       .eq("slug", slug)
       .eq("published", true)
       .single()
@@ -60,6 +62,10 @@ async function fetchService(slug: string): Promise<ServiceView | null> {
     slug: fb.slug,
     name: fb.title,
     tagline: fb.points.join(" · "),
+    positioning_headline: null,
+    benefits: [...fb.points],
+    capabilities: null,
+    summary: null,
     description: null,
     hero_image_url: fb.img,
     phase: null,
