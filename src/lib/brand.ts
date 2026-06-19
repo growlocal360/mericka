@@ -8,6 +8,7 @@ export const brand = {
   emailHref: "mailto:info@merickagroup.com",
   hqLines: ["Mericka Group LLC", "2323 S Houston Ave, Building 5", "Humble, TX 77396"],
   logo: "/mericka-group-contractor-horizontal.svg",
+  logoWhite: "/mericka-group-logo-white.svg",
   symbol: "/mericka-group-contactor-symbol.svg",
 } as const;
 
