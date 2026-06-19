@@ -6,9 +6,9 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Phone, ChevronDown } from "lucide-react";
 import clsx from "clsx";
-import { brand, services, sectors } from "@/lib/brand";
+import { brand, services, sectors, crafts } from "@/lib/brand";
 
-type DropdownKey = "services" | "sectors" | "company" | null;
+type DropdownKey = "services" | "capabilities" | "sectors" | "company" | null;
 
 const companyLinks = [
   { href: "/company", label: "About" },
@@ -57,10 +57,15 @@ export default function Navigation() {
             onEnter={() => setOpen("services")}
             onLeave={() => setOpen(null)}
             href="/services"
-            items={[
-              { href: "/energy-services", label: "Energy Services" },
-              ...services.map((s) => ({ href: `/${s.slug}`, label: s.title })),
-            ]}
+            items={services.map((s) => ({ href: `/${s.slug}`, label: s.title }))}
+          />
+          <DropdownLink
+            label="Capabilities"
+            isOpen={open === "capabilities"}
+            onEnter={() => setOpen("capabilities")}
+            onLeave={() => setOpen(null)}
+            href="/energy-services"
+            items={crafts.map((c) => ({ href: `/${c.slug}`, label: c.title }))}
           />
           <DropdownLink
             label="Sectors"
@@ -126,7 +131,8 @@ export default function Navigation() {
               transition={{ duration: 0.3, delay: 0.1 }}
               className="p-6 flex flex-col gap-1"
             >
-              <MobileGroup label="Services" href="/services" items={[{ href: "/energy-services", label: "Energy Services" }, ...services.map((s) => ({ href: `/${s.slug}`, label: s.title }))]} onClick={() => setMobileOpen(false)} />
+              <MobileGroup label="Services" href="/services" items={services.map((s) => ({ href: `/${s.slug}`, label: s.title }))} onClick={() => setMobileOpen(false)} />
+              <MobileGroup label="Capabilities" href="/energy-services" items={crafts.map((c) => ({ href: `/${c.slug}`, label: c.title }))} onClick={() => setMobileOpen(false)} />
               <MobileGroup label="Sectors" href="/sectors" items={sectors.map((s) => ({ href: `/${s.slug}`, label: s.name }))} onClick={() => setMobileOpen(false)} />
               <MobileGroup label="Company" href="/company" items={companyLinks} onClick={() => setMobileOpen(false)} />
               <a href={brand.phoneHref} className="mt-6 flex items-center gap-2 text-brand-200 hover:text-brand-highlight transition-colors py-3">
