@@ -6,6 +6,7 @@ import { brand, services } from "@/lib/brand";
 const companyLinks = [
   { href: "/company", label: "About" },
   { href: "/company#team", label: "Team" },
+  { href: "/energy-services", label: "Energy Services" },
   { href: "/sectors", label: "Sectors" },
   { href: "/careers", label: "Careers" },
   { href: "/news", label: "News" },

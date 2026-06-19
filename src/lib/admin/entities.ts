@@ -1,5 +1,6 @@
 export type EntityKey =
   | "services"
+  | "capabilities"
   | "sectors"
   | "projects"
   | "news"
@@ -62,6 +63,27 @@ export const ENTITIES: Record<EntityKey, EntityConfig> = {
         { value: "execution", label: "Execution" },
         { value: "maintenance-outage", label: "Maintenance & Outage" },
       ] },
+      { name: "icon", label: "Lucide Icon Name", kind: "text" },
+      { name: "hero_image_url", label: "Hero Image", kind: "image" },
+      { name: "description", label: "Description (optional, extra detail)", kind: "rich" },
+      { name: "display_order", label: "Display Order", kind: "number" },
+      { name: "published", label: "Published", kind: "boolean" },
+    ],
+  },
+  capabilities: {
+    key: "capabilities",
+    table: "crafts",
+    label: "Capabilities",
+    labelSingular: "Capability",
+    titleField: "name",
+    fields: [
+      { name: "name", label: "Name", kind: "text", required: true },
+      { name: "slug", label: "Slug", kind: "text", required: true },
+      { name: "tagline", label: "Tagline", kind: "text" },
+      { name: "positioning_headline", label: "Positioning Headline", kind: "text" },
+      { name: "benefits", label: "Key Benefits (comma separated)", kind: "tags", arrayValues: true },
+      { name: "capabilities", label: "Capabilities (comma separated)", kind: "tags", arrayValues: true },
+      { name: "summary", label: "What We Do (summary)", kind: "textarea" },
       { name: "icon", label: "Lucide Icon Name", kind: "text" },
       { name: "hero_image_url", label: "Hero Image", kind: "image" },
       { name: "description", label: "Description (optional, extra detail)", kind: "rich" },
