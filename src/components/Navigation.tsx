@@ -34,7 +34,7 @@ export default function Navigation() {
   return (
     <header
       className={clsx(
-        "fixed top-0 left-0 right-0 z-50 h-20 transition-all duration-300 bg-[linear-gradient(to_right,#24273e,#1f5199)]",
+        "fixed top-0 left-0 right-0 z-50 h-20 transition-all duration-300 bg-[linear-gradient(to_right,#0d3676,#151725)]",
         scrolled ? "shadow-lg border-b border-white/10" : ""
       )}
     >

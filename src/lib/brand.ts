@@ -112,4 +112,4 @@ export const marqueeImages = [
 ];
 
 export const heroImage =
-  "https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=2000&q=70";
+  "https://zeykdqgjsamlngfuimcp.supabase.co/storage/v1/object/public/uploads/hero_image_url/1781845766503-4iuga9.jpg";
