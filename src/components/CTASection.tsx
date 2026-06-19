@@ -7,7 +7,7 @@ import { brand } from "@/lib/brand";
 
 export default function CTASection() {
   return (
-    <section className="relative py-24 bg-gradient-to-br from-brand-accent to-brand-highlight grid-pattern overflow-hidden">
+    <section className="relative py-24 bg-white grid-pattern overflow-hidden">
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -32,7 +32,7 @@ export default function CTASection() {
             </Link>
             <a
               href={brand.phoneHref}
-              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-lg bg-white/90 text-brand-950 font-semibold hover:bg-white transition-colors"
+              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-lg border border-brand-200 text-brand-950 font-semibold hover:bg-brand-50 transition-colors"
             >
               <Phone className="w-5 h-5" /> Call {brand.phone}
             </a>
