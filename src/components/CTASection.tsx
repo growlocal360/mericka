@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, Phone } from "lucide-react";
+import { ArrowUpRight, Phone } from "lucide-react";
 import { brand } from "@/lib/brand";
 
 export default function CTASection() {
@@ -25,9 +25,10 @@ export default function CTASection() {
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-lg bg-brand-950 text-white font-semibold hover:bg-brand-900 transition-colors"
+              className="group inline-flex items-center gap-2 px-6 py-3.5 rounded-lg bg-brand-950 text-white font-semibold hover:bg-brand-900 transition-colors"
             >
-              Get a Quote <ArrowRight className="w-5 h-5" />
+              Get In Touch
+              <ArrowUpRight className="w-5 h-5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </Link>
             <a
               href={brand.phoneHref}
