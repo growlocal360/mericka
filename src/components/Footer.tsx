@@ -61,7 +61,7 @@ export default function Footer() {
         width={460}
         height={460}
         aria-hidden
-        className="pointer-events-none absolute bottom-0 right-0 h-[75%] w-auto max-w-none select-none opacity-[0.05]"
+        className="pointer-events-none absolute bottom-0 right-0 h-[90%] w-auto max-w-none select-none opacity-[0.045]"
       />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
