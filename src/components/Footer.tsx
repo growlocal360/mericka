@@ -49,27 +49,19 @@ export default function Footer() {
       {/* red safety stripe */}
       <div className="h-1 w-full bg-[linear-gradient(to_right,#be1f24,#7a1418)]" />
 
-      {/* atmosphere: red glow + blueprint grid */}
+      {/* atmosphere: red glow */}
       <div aria-hidden className="pointer-events-none absolute inset-0">
         <div className="absolute -top-24 right-[8%] h-80 w-80 rounded-full bg-[radial-gradient(circle,rgba(190,31,36,0.20),transparent_70%)] blur-2xl" />
-        <div
-          className="absolute inset-0 opacity-[0.05]"
-          style={{
-            backgroundImage:
-              "linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)",
-            backgroundSize: "48px 48px",
-          }}
-        />
       </div>
 
-      {/* faint symbol watermark */}
+      {/* faint symbol watermark — 75% of footer height, anchored bottom-right */}
       <Image
         src={brand.symbol}
         alt=""
         width={460}
         height={460}
         aria-hidden
-        className="pointer-events-none absolute -bottom-24 -right-12 w-[30rem] max-w-none select-none opacity-[0.05]"
+        className="pointer-events-none absolute bottom-0 right-0 h-[75%] w-auto max-w-none select-none opacity-[0.05]"
       />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
