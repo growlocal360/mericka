@@ -4,7 +4,8 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Phone, ArrowRight, Shield } from "lucide-react";
+import { Phone, Shield } from "lucide-react";
+import GetInTouchButton from "@/components/GetInTouchButton";
 import { brand, heroImage } from "@/lib/brand";
 
 export default function Hero() {
@@ -85,12 +86,7 @@ export default function Hero() {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="mt-10 flex flex-wrap items-center gap-4"
         >
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-2 px-6 py-3.5 rounded-lg bg-brand-highlight text-white font-semibold hover:brightness-110 transition-all"
-          >
-            Get a Quote <ArrowRight className="w-5 h-5" />
-          </Link>
+          <GetInTouchButton />
           <Link
             href="/services"
             className="inline-flex items-center gap-2 px-6 py-3.5 rounded-lg border border-brand-300/40 text-white font-semibold hover:bg-white/10 transition-all"

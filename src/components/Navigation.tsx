@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Phone, ChevronDown } from "lucide-react";
 import clsx from "clsx";
 import { brand, services, sectors, crafts } from "@/lib/brand";
+import GetInTouchButton from "@/components/GetInTouchButton";
 
 type DropdownKey = "services" | "capabilities" | "sectors" | "company" | null;
 
@@ -93,12 +94,7 @@ export default function Navigation() {
             <Phone className="w-4 h-4" />
             {brand.phone}
           </a>
-          <Link
-            href="/contact"
-            className="inline-flex items-center px-5 py-2.5 rounded-lg bg-brand-highlight text-white font-semibold hover:brightness-110 transition-all"
-          >
-            Get In Touch
-          </Link>
+          <GetInTouchButton size="sm" />
         </div>
 
         <button
@@ -138,13 +134,7 @@ export default function Navigation() {
               <a href={brand.phoneHref} className="mt-6 flex items-center gap-2 text-brand-200 hover:text-brand-highlight transition-colors py-3">
                 <Phone className="w-5 h-5" /> {brand.phone}
               </a>
-              <Link
-                href="/contact"
-                onClick={() => setMobileOpen(false)}
-                className="mt-3 inline-flex justify-center items-center px-6 py-3 rounded-lg bg-brand-highlight text-white font-semibold"
-              >
-                Get In Touch
-              </Link>
+              <GetInTouchButton className="mt-3 w-full" onClick={() => setMobileOpen(false)} />
             </motion.nav>
           </motion.div>
         )}

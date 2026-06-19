@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { MapPin, Briefcase, DollarSign } from "lucide-react";
 import ArticleContent from "@/components/editor/ArticleContent";
 import { safeSingle } from "@/lib/supabase/safe";
+import GetInTouchButton from "@/components/GetInTouchButton";
 
 type Job = {
   slug: string;
@@ -74,12 +75,7 @@ export default async function JobDetail({ params }: { params: Promise<{ slug: st
         )}
 
         <div className="mt-12">
-          <Link
-            href="/contact"
-            className="inline-flex items-center px-6 py-3 rounded-lg bg-brand-highlight text-white font-semibold hover:brightness-110 transition-all"
-          >
-            Apply for this role
-          </Link>
+          <GetInTouchButton />
         </div>
       </div>
     </article>

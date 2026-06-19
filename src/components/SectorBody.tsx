@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import ArticleContent from "@/components/editor/ArticleContent";
+import GetInTouchButton from "@/components/GetInTouchButton";
 
 export type SectorView = {
   slug: string;
@@ -62,12 +63,7 @@ export default function SectorBody({
                   </p>
                 )}
               </div>
-              <Link
-                href="/contact"
-                className="mt-8 inline-flex items-center gap-2 px-6 py-3.5 rounded-lg bg-brand-highlight text-white font-semibold hover:bg-brand-900 transition-colors"
-              >
-                Collaborate Now <ArrowRight className="w-5 h-5" />
-              </Link>
+              <GetInTouchButton className="mt-8" />
             </motion.div>
 
             {introImage && (
