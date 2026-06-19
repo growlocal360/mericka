@@ -2,6 +2,7 @@ export type EntityKey =
   | "services"
   | "capabilities"
   | "sectors"
+  | "sector_services"
   | "projects"
   | "news"
   | "careers"
@@ -104,6 +105,37 @@ export const ENTITIES: Record<EntityKey, EntityConfig> = {
       { name: "hero_image_url", label: "Hero Image", kind: "image" },
       { name: "intro_image_url", label: "Intro Section Image", kind: "image" },
       { name: "description", label: "Description", kind: "rich" },
+      { name: "display_order", label: "Display Order", kind: "number" },
+      { name: "published", label: "Published", kind: "boolean" },
+    ],
+  },
+  sector_services: {
+    key: "sector_services",
+    table: "sector_services",
+    label: "Sector Services",
+    labelSingular: "Sector Service",
+    titleField: "title",
+    fields: [
+      { name: "sector_slug", label: "Sector", kind: "select", required: true, options: [
+        { value: "aerospace", label: "Aerospace" },
+        { value: "petrochemical", label: "Petrochemical" },
+        { value: "semiconductor", label: "Semiconductor" },
+        { value: "downstream-oil-gas", label: "Downstream Oil & Gas" },
+        { value: "midstream-oil-gas", label: "Midstream Oil & Gas" },
+        { value: "data-centers", label: "Data Centers" },
+      ] },
+      { name: "service_slug", label: "Service", kind: "select", required: true, options: [
+        { value: "scaffolding-and-access-solutions", label: "Scaffolding & Access Solutions" },
+        { value: "turnaround-and-outage-support", label: "Turnaround & Outage Support" },
+        { value: "nested-facility-maintenance-programs", label: "Nested Facility Maintenance Programs" },
+        { value: "subcontracting-partnerships", label: "Subcontracting Partnerships" },
+        { value: "comprehensive-storage-tank-services", label: "Comprehensive Storage Tank Services" },
+        { value: "pipeline-maintenance-programs", label: "Pipeline Maintenance Programs" },
+      ] },
+      { name: "title", label: "Title", kind: "text", required: true },
+      { name: "meta_description", label: "Meta Description", kind: "textarea" },
+      { name: "hero_image_url", label: "Hero Image", kind: "image" },
+      { name: "content", label: "Content", kind: "rich" },
       { name: "display_order", label: "Display Order", kind: "number" },
       { name: "published", label: "Published", kind: "boolean" },
     ],

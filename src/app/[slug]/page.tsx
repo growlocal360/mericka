@@ -233,7 +233,17 @@ export default async function FlatPage({
   // Sectors take precedence, then services. Slugs don't collide in our data.
   const sector = await fetchSector(slug);
   if (sector) {
-    const services = await fetchServiceCards();
+    const [services, comboRows] = await Promise.all([
+      fetchServiceCards(),
+      safeList<{ service_slug: string }>((sb) =>
+        sb
+          .from("sector_services")
+          .select("service_slug")
+          .eq("sector_slug", sector.slug)
+          .eq("published", true)
+      ),
+    ]);
+    const comboServices = comboRows.map((c) => c.service_slug);
     return (
       <article>
         <Hero
@@ -242,7 +252,7 @@ export default async function FlatPage({
           backHref="/sectors"
           backLabel="All Sectors"
         />
-        <SectorBody sector={sector} services={services} />
+        <SectorBody sector={sector} services={services} comboServices={comboServices} />
         <CTASection />
       </article>
     );
