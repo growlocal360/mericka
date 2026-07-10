@@ -10,12 +10,18 @@ import {
 } from "@/lib/brand";
 import SectorBody, { type SectorView } from "@/components/SectorBody";
 import ServiceBody, { type ServiceView } from "@/components/ServiceBody";
+import SectorsGrid from "@/components/SectorsGrid";
 import CTASection from "@/components/CTASection";
 
 // Static generation + ISR: pages are pre-rendered to static HTML and
 // revalidated in the background so admin edits show up within the window.
 export const revalidate = 60;
 export const dynamicParams = true; // new slugs added in the CMS render on-demand
+
+// Service (craft) pages that have sector-specific sub-service pages (combos).
+const CRAFT_COMBO_SERVICE: Record<string, string> = {
+  scaffolding: "scaffolding-and-access-solutions",
+};
 
 /* ----------------------------- data fetching ----------------------------- */
 
@@ -243,6 +249,18 @@ export default async function FlatPage({
 
   const craft = await fetchCraft(slug);
   if (craft) {
+    const comboServiceSlug = CRAFT_COMBO_SERVICE[slug] ?? null;
+    const comboSectors = comboServiceSlug
+      ? (
+          await safeList<{ sector_slug: string }>((sb) =>
+            sb
+              .from("sector_services")
+              .select("sector_slug")
+              .eq("service_slug", comboServiceSlug)
+              .eq("published", true)
+          )
+        ).map((r) => r.sector_slug)
+      : [];
     return (
       <article>
         <Hero
@@ -252,6 +270,7 @@ export default async function FlatPage({
           backLabel="Energy Services"
         />
         <ServiceBody service={craft} />
+        <SectorsGrid comboServiceSlug={comboServiceSlug} comboSectors={comboSectors} />
         <CTASection />
       </article>
     );
