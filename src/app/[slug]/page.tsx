@@ -7,6 +7,7 @@ import {
   sectors as sectorFallback,
   services as serviceFallback,
   crafts as craftFallback,
+  craftComboService,
 } from "@/lib/brand";
 import SectorBody, { type SectorView } from "@/components/SectorBody";
 import ServiceBody, { type ServiceView } from "@/components/ServiceBody";
@@ -17,11 +18,6 @@ import CTASection from "@/components/CTASection";
 // revalidated in the background so admin edits show up within the window.
 export const revalidate = 60;
 export const dynamicParams = true; // new slugs added in the CMS render on-demand
-
-// Service (craft) pages that have sector-specific sub-service pages (combos).
-const CRAFT_COMBO_SERVICE: Record<string, string> = {
-  scaffolding: "scaffolding-and-access-solutions",
-};
 
 /* ----------------------------- data fetching ----------------------------- */
 
@@ -217,6 +213,15 @@ export default async function FlatPage({
   // Sectors take precedence, then services. Slugs don't collide in our data.
   const sector = await fetchSector(slug);
   if (sector) {
+    const sectorCombos = (
+      await safeList<{ service_slug: string }>((sb) =>
+        sb
+          .from("sector_services")
+          .select("service_slug")
+          .eq("sector_slug", sector.slug)
+          .eq("published", true)
+      )
+    ).map((r) => r.service_slug);
     return (
       <article>
         <Hero
@@ -225,7 +230,7 @@ export default async function FlatPage({
           backHref="/sectors"
           backLabel="All Sectors"
         />
-        <SectorBody sector={sector} />
+        <SectorBody sector={sector} sectorCombos={sectorCombos} />
         <CTASection />
       </article>
     );
@@ -249,7 +254,7 @@ export default async function FlatPage({
 
   const craft = await fetchCraft(slug);
   if (craft) {
-    const comboServiceSlug = CRAFT_COMBO_SERVICE[slug] ?? null;
+    const comboServiceSlug = craftComboService[slug] ?? null;
     const comboSectors = comboServiceSlug
       ? (
           await safeList<{ sector_slug: string }>((sb) =>

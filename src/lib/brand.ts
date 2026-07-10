@@ -78,6 +78,12 @@ export const crafts = [
   },
 ] as const;
 
+// Which service (craft) pages have a sector-specific sub-service (combo) page,
+// and that combo's service slug. Only Scaffolding & Access currently.
+export const craftComboService: Record<string, string> = {
+  scaffolding: "scaffolding-and-access-solutions",
+};
+
 export const sectors = [
   { name: "Downstream Oil & Gas", slug: "downstream-oil-gas", icon: "Waves",
     description: "Refining, processing, and product distribution facilities operating around the clock." },
