@@ -32,7 +32,7 @@ create policy "admin all crafts" on crafts for all to authenticated using (true)
 insert into crafts
   (slug, name, tagline, positioning_headline, benefits, capabilities, summary, hero_image_url, display_order, published)
 values
-  ('scaffolding', 'Scaffolding',
+  ('scaffolding', 'Scaffolding & Access',
    'Safe, engineered access for work at any height.',
    'Engineered access that keeps your crews safe and productive',
    array[

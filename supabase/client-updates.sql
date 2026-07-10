@@ -3,8 +3,9 @@
 -- Safe to re-run.
 -- =========================================================================
 
--- Item 1: match the /scaffolding page heading to the new "Scaffolding & Access" label
-update crafts set name = 'Scaffolding & Access' where slug = 'scaffolding';
+-- Item 1 (scaffolding rename) is intentionally NOT here — do it in
+--   /admin -> Capabilities -> Scaffolding -> Name = "Scaffolding & Access"
+-- so a crafts-table hiccup can't block the team/Chase updates below.
 
 -- ----------------------------- Item 3: Team ------------------------------
 -- Remove Charlene Stewart Terry
