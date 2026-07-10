@@ -34,8 +34,23 @@ export default async function CompanyPage() {
           </span>
           <h1 className="mt-3 text-5xl font-bold text-brand-900">About {brand.name}</h1>
           <p className="mt-5 text-lg text-brand-600 leading-relaxed">
-            Mericka Group is a nationwide scaffolding, painting, insulation, and
-            fireproofing contractor built to own the soft craft scope on large-scale
+            Mericka Group is a nationwide{" "}
+            <Link href="/scaffolding" className="text-brand-accent underline hover:text-brand-highlight">
+              scaffolding
+            </Link>
+            ,{" "}
+            <Link href="/industrial-coatings" className="text-brand-accent underline hover:text-brand-highlight">
+              painting
+            </Link>
+            ,{" "}
+            <Link href="/insulation" className="text-brand-accent underline hover:text-brand-highlight">
+              insulation
+            </Link>
+            , and{" "}
+            <Link href="/fireproofing" className="text-brand-accent underline hover:text-brand-highlight">
+              fireproofing
+            </Link>{" "}
+            contractor built to own the soft craft scope on large-scale
             industrial and energy projects. Headquartered in Humble, Texas, the firm
             serves refining, midstream, chemical, power generation, and advanced
             technology facilities across new construction, nested maintenance,
