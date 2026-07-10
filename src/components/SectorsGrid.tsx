@@ -14,7 +14,16 @@ const iconMap: Record<string, LucideIcon> = {
   Droplet,
 };
 
-export default function SectorsGrid() {
+export default function SectorsGrid({
+  comboServiceSlug = null,
+  comboSectors = [],
+}: {
+  // When set (e.g. on the Scaffolding & Access page), a sector card links to
+  // its sector×service sub-page if that combo exists; otherwise it falls back
+  // to the main sector page.
+  comboServiceSlug?: string | null;
+  comboSectors?: string[];
+}) {
   return (
     <section className="py-24 bg-gradient-brand-light grid-pattern relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
@@ -47,7 +56,11 @@ export default function SectorsGrid() {
                 transition={{ duration: 0.6, delay: i * 0.1 }}
               >
                 <Link
-                  href={`/${s.slug}`}
+                  href={
+                    comboServiceSlug && comboSectors.includes(s.slug)
+                      ? `/${s.slug}/${comboServiceSlug}`
+                      : `/${s.slug}`
+                  }
                   className="block h-full bg-white rounded-2xl p-8 border border-brand-100 hover:border-brand-accent/50 hover:shadow-xl transition-all group"
                 >
                   <div className="inline-flex bg-brand-accent/10 rounded-xl p-3 mb-5">

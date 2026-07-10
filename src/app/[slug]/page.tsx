@@ -7,9 +7,11 @@ import {
   sectors as sectorFallback,
   services as serviceFallback,
   crafts as craftFallback,
+  craftComboService,
 } from "@/lib/brand";
 import SectorBody, { type SectorView } from "@/components/SectorBody";
 import ServiceBody, { type ServiceView } from "@/components/ServiceBody";
+import SectorsGrid from "@/components/SectorsGrid";
 import CTASection from "@/components/CTASection";
 
 // Static generation + ISR: pages are pre-rendered to static HTML and
@@ -211,6 +213,15 @@ export default async function FlatPage({
   // Sectors take precedence, then services. Slugs don't collide in our data.
   const sector = await fetchSector(slug);
   if (sector) {
+    const sectorCombos = (
+      await safeList<{ service_slug: string }>((sb) =>
+        sb
+          .from("sector_services")
+          .select("service_slug")
+          .eq("sector_slug", sector.slug)
+          .eq("published", true)
+      )
+    ).map((r) => r.service_slug);
     return (
       <article>
         <Hero
@@ -219,7 +230,7 @@ export default async function FlatPage({
           backHref="/sectors"
           backLabel="All Sectors"
         />
-        <SectorBody sector={sector} />
+        <SectorBody sector={sector} sectorCombos={sectorCombos} />
         <CTASection />
       </article>
     );
@@ -243,6 +254,18 @@ export default async function FlatPage({
 
   const craft = await fetchCraft(slug);
   if (craft) {
+    const comboServiceSlug = craftComboService[slug] ?? null;
+    const comboSectors = comboServiceSlug
+      ? (
+          await safeList<{ sector_slug: string }>((sb) =>
+            sb
+              .from("sector_services")
+              .select("sector_slug")
+              .eq("service_slug", comboServiceSlug)
+              .eq("published", true)
+          )
+        ).map((r) => r.sector_slug)
+      : [];
     return (
       <article>
         <Hero
@@ -252,6 +275,7 @@ export default async function FlatPage({
           backLabel="Energy Services"
         />
         <ServiceBody service={craft} />
+        <SectorsGrid comboServiceSlug={comboServiceSlug} comboSectors={comboSectors} />
         <CTASection />
       </article>
     );

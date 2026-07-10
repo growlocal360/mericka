@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import ArticleContent from "@/components/editor/ArticleContent";
 import GetInTouchButton from "@/components/GetInTouchButton";
-import { crafts } from "@/lib/brand";
+import { crafts, craftComboService } from "@/lib/brand";
 
 export type SectorView = {
   slug: string;
@@ -30,7 +30,14 @@ const fadeUp = {
   viewport: { once: true, margin: "-100px" },
 };
 
-export default function SectorBody({ sector }: { sector: SectorView }) {
+export default function SectorBody({
+  sector,
+  sectorCombos = [],
+}: {
+  sector: SectorView;
+  // Service slugs that have a sector×service sub-page for THIS sector.
+  sectorCombos?: string[];
+}) {
   const hasDescription = sector.description != null;
   const introImage = sector.intro_image_url ?? sector.hero_image_url;
 
@@ -97,14 +104,20 @@ export default function SectorBody({ sector }: { sector: SectorView }) {
           </motion.div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {crafts.map((c, index) => (
+            {crafts.map((c, index) => {
+              const comboService = craftComboService[c.slug];
+              const href =
+                comboService && sectorCombos.includes(comboService)
+                  ? `/${sector.slug}/${comboService}`
+                  : `/${c.slug}`;
+              return (
               <motion.div
                 key={c.slug}
                 {...fadeUp}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
                 <Link
-                  href={`/${c.slug}`}
+                  href={href}
                   className="relative block h-96 rounded-2xl overflow-hidden group bg-brand-900"
                 >
                   <Image
@@ -134,7 +147,8 @@ export default function SectorBody({ sector }: { sector: SectorView }) {
                   </div>
                 </Link>
               </motion.div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
