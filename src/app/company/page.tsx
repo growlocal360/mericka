@@ -34,9 +34,15 @@ export default async function CompanyPage() {
           </span>
           <h1 className="mt-3 text-5xl font-bold text-brand-900">About {brand.name}</h1>
           <p className="mt-5 text-lg text-brand-600 leading-relaxed">
-            {brand.name} delivers scaffolding, painting, insulation, and fireproofing
-            services across pre-construction, execution, and turnaround phases — for
-            the industries that can&apos;t afford downtime.
+            Mericka Group is a nationwide scaffolding, painting, insulation, and
+            fireproofing contractor built to own the soft craft scope on large-scale
+            industrial and energy projects. Headquartered in Humble, Texas, the firm
+            serves refining, midstream, chemical, power generation, and advanced
+            technology facilities across new construction, nested maintenance,
+            turnarounds, and outages — pairing a multi-skilled craft workforce with
+            disciplined cost management and data-driven reporting that brings clear
+            accountability to a scope often left as the least-controlled line on a
+            project budget.
           </p>
         </header>
 
