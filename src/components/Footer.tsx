@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Linkedin, Facebook, Instagram, Phone, Mail, MapPin } from "lucide-react";
-import { brand, services } from "@/lib/brand";
+import { brand, crafts } from "@/lib/brand";
 import GetInTouchButton from "@/components/GetInTouchButton";
 
 const companyLinks = [
@@ -119,7 +119,7 @@ export default function Footer() {
           <FooterCol
             className="lg:col-span-3"
             label="Services"
-            links={services.map((s) => ({ href: `/${s.slug}`, label: s.title }))}
+            links={crafts.map((s) => ({ href: `/${s.slug}`, label: s.title }))}
           />
           <FooterCol className="lg:col-span-2" label="Company" links={companyLinks} />
 

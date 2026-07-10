@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import ArticleContent from "@/components/editor/ArticleContent";
 import GetInTouchButton from "@/components/GetInTouchButton";
+import { crafts } from "@/lib/brand";
 
 export type SectorView = {
   slug: string;
@@ -29,15 +30,7 @@ const fadeUp = {
   viewport: { once: true, margin: "-100px" },
 };
 
-export default function SectorBody({
-  sector,
-  services,
-  comboServices = [],
-}: {
-  sector: SectorView;
-  services: ServiceCard[];
-  comboServices?: string[];
-}) {
+export default function SectorBody({ sector }: { sector: SectorView }) {
   const hasDescription = sector.description != null;
   const introImage = sector.intro_image_url ?? sector.hero_image_url;
 
@@ -103,48 +96,38 @@ export default function SectorBody({
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {services.map((s, index) => (
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {crafts.map((c, index) => (
               <motion.div
-                key={s.slug}
+                key={c.slug}
                 {...fadeUp}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
                 <Link
-                  href={
-                    comboServices.includes(s.slug)
-                      ? `/${sector.slug}/${s.slug}`
-                      : `/${s.slug}`
-                  }
+                  href={`/${c.slug}`}
                   className="relative block h-96 rounded-2xl overflow-hidden group bg-brand-900"
                 >
-                  {s.hero_image_url && (
-                    <Image
-                      src={s.hero_image_url}
-                      alt={s.name}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 33vw"
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                  )}
+                  <Image
+                    src={c.img}
+                    alt={c.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 25vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
                   <div className="absolute inset-0 bg-gradient-to-t from-brand-950 via-brand-900/60 to-transparent" />
                   <div className="absolute bottom-0 left-0 right-0 p-7">
-                    <h3 className="text-2xl font-bold text-white mb-3">{s.name}</h3>
-                    {s.points?.length ? (
-                      <ul className="space-y-1 mb-4">
-                        {s.points.map((p) => (
-                          <li
-                            key={p}
-                            className="text-sm text-brand-200 flex items-center gap-2"
-                          >
-                            <span className="w-1 h-1 rounded-full bg-brand-accent" />
-                            {p}
-                          </li>
-                        ))}
-                      </ul>
-                    ) : s.tagline ? (
-                      <p className="text-sm text-brand-200 mb-4 line-clamp-2">{s.tagline}</p>
-                    ) : null}
+                    <h3 className="text-2xl font-bold text-white mb-3">{c.title}</h3>
+                    <ul className="space-y-1 mb-4">
+                      {c.points.map((p) => (
+                        <li
+                          key={p}
+                          className="text-sm text-brand-200 flex items-center gap-2"
+                        >
+                          <span className="w-1 h-1 rounded-full bg-brand-accent" />
+                          {p}
+                        </li>
+                      ))}
+                    </ul>
                     <span className="inline-flex items-center gap-1 text-brand-accent group-hover:text-brand-highlight transition-colors text-sm font-semibold">
                       Learn more <ArrowRight className="w-4 h-4" />
                     </span>

@@ -8,10 +8,7 @@ import {
   services as serviceFallback,
   crafts as craftFallback,
 } from "@/lib/brand";
-import SectorBody, {
-  type SectorView,
-  type ServiceCard,
-} from "@/components/SectorBody";
+import SectorBody, { type SectorView } from "@/components/SectorBody";
 import ServiceBody, { type ServiceView } from "@/components/ServiceBody";
 import CTASection from "@/components/CTASection";
 
@@ -100,25 +97,6 @@ async function fetchCraft(slug: string): Promise<ServiceView | null> {
     hero_image_url: fb.img,
     phase: null,
   };
-}
-
-async function fetchServiceCards(): Promise<ServiceCard[]> {
-  const db = await safeList<ServiceCard>((sb) =>
-    sb
-      .from("services")
-      .select("slug, name, tagline, hero_image_url, display_order")
-      .eq("published", true)
-      .order("display_order", { ascending: true })
-  );
-  if (db.length > 0) return db;
-
-  return serviceFallback.map((s) => ({
-    slug: s.slug,
-    name: s.title,
-    tagline: s.points.join(" · "),
-    hero_image_url: s.img,
-    points: [...s.points],
-  }));
 }
 
 /* --------------------------- static generation --------------------------- */
@@ -233,17 +211,6 @@ export default async function FlatPage({
   // Sectors take precedence, then services. Slugs don't collide in our data.
   const sector = await fetchSector(slug);
   if (sector) {
-    const [services, comboRows] = await Promise.all([
-      fetchServiceCards(),
-      safeList<{ service_slug: string }>((sb) =>
-        sb
-          .from("sector_services")
-          .select("service_slug")
-          .eq("sector_slug", sector.slug)
-          .eq("published", true)
-      ),
-    ]);
-    const comboServices = comboRows.map((c) => c.service_slug);
     return (
       <article>
         <Hero
@@ -252,7 +219,7 @@ export default async function FlatPage({
           backHref="/sectors"
           backLabel="All Sectors"
         />
-        <SectorBody sector={sector} services={services} comboServices={comboServices} />
+        <SectorBody sector={sector} />
         <CTASection />
       </article>
     );

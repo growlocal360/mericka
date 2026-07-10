@@ -53,7 +53,7 @@ export const services = [
 
 export const crafts = [
   {
-    title: "Scaffolding",
+    title: "Scaffolding & Access",
     slug: "scaffolding",
     img: "/images/scaffolding.jpg",
     points: ["Work at any height", "Stair towers & platforms", "Rope access"],
