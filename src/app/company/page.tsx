@@ -26,14 +26,29 @@ export default async function CompanyPage() {
   );
 
   return (
-    <div className="pt-32 pb-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <header className="max-w-3xl mb-16">
+    <article>
+      <header className="relative h-[55vh] min-h-[420px] bg-brand-900 flex items-end overflow-hidden">
+        <Image
+          src="/images/mericka-group-employees.jpg"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-brand-950 via-brand-900/80 to-brand-900/40" />
+        <div className="relative max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 pb-16">
           <span className="text-sm tracking-wider font-semibold text-brand-accent uppercase">
             Company
           </span>
-          <h1 className="mt-3 text-5xl font-bold text-brand-900">About {brand.name}</h1>
-          <p className="mt-5 text-lg text-brand-600 leading-relaxed">
+          <h1 className="mt-4 text-5xl sm:text-6xl font-bold text-white">About {brand.name}</h1>
+        </div>
+      </header>
+
+      <div className="pt-16 pb-24">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <header className="max-w-3xl mb-16">
+          <p className="text-lg text-brand-600 leading-relaxed">
             Mericka Group is a nationwide{" "}
             <Link href="/scaffolding" className="text-brand-accent underline hover:text-brand-highlight">
               scaffolding
@@ -114,5 +129,6 @@ export default async function CompanyPage() {
         </section>
       </div>
     </div>
+    </article>
   );
 }
