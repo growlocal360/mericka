@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { safeList } from "@/lib/supabase/safe";
+import { getClients } from "@/lib/clients";
 
 type Project = {
   id: string;
@@ -27,6 +28,8 @@ export default async function ProjectsIndex() {
       .eq("published", true)
       .order("completed_at", { ascending: false, nullsFirst: false })
   );
+
+  const clients = await getClients();
 
   return (
     <div className="pt-32 pb-24">
@@ -77,6 +80,41 @@ export default async function ProjectsIndex() {
               </Link>
             ))}
           </div>
+        )}
+
+        {clients.length > 0 && (
+          <section className="mt-20 border-t border-brand-100 pt-16">
+            <header className="mb-10 max-w-3xl">
+              <span className="text-sm tracking-wider font-semibold text-brand-accent uppercase">
+                Trusted By
+              </span>
+              <h2 className="mt-3 text-3xl sm:text-4xl font-bold text-brand-900">
+                Companies that count on Mericka
+              </h2>
+              <p className="mt-4 text-brand-600">
+                A selection of the operators, EPCs, and builders we deliver soft-craft scope for.
+              </p>
+            </header>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5">
+              {clients.map((c) => (
+                <div
+                  key={c.name}
+                  className="flex h-28 items-center justify-center rounded-2xl border border-brand-100 bg-white p-6"
+                >
+                  {c.logo_url && (
+                    <Image
+                      src={c.logo_url}
+                      alt={c.name}
+                      width={200}
+                      height={72}
+                      unoptimized
+                      className="max-h-16 w-auto object-contain"
+                    />
+                  )}
+                </div>
+              ))}
+            </div>
+          </section>
         )}
       </div>
     </div>

@@ -3,6 +3,7 @@ export type EntityKey =
   | "capabilities"
   | "sectors"
   | "sector_services"
+  | "clients"
   | "projects"
   | "news"
   | "careers"
@@ -17,6 +18,7 @@ export type FieldKind =
   | "number"
   | "boolean"
   | "select"
+  | "reference"
   | "tags"
   | "date";
 
@@ -26,6 +28,12 @@ export interface FieldDef {
   kind: FieldKind;
   required?: boolean;
   options?: { value: string; label: string }[];
+  /** For kind: "reference" — the entity whose rows populate the dropdown. */
+  refEntity?: EntityKey;
+  /** Column stored as this field's value (default "name"). */
+  refValueField?: string;
+  /** Column shown as the option label (default "name"). */
+  refLabelField?: string;
   /** Comma-separated text input that maps to string[] in DB */
   arrayValues?: boolean;
 }
@@ -140,6 +148,29 @@ export const ENTITIES: Record<EntityKey, EntityConfig> = {
       { name: "published", label: "Published", kind: "boolean" },
     ],
   },
+  clients: {
+    key: "clients",
+    table: "clients",
+    label: "Clients",
+    labelSingular: "Client",
+    titleField: "name",
+    fields: [
+      { name: "name", label: "Name", kind: "text", required: true },
+      { name: "logo_url", label: "Logo", kind: "image" },
+      { name: "location", label: "Location(s)", kind: "text" },
+      { name: "sector_slug", label: "Sector", kind: "select", options: [
+        { value: "aerospace", label: "Aerospace" },
+        { value: "petrochemical", label: "Petrochemical" },
+        { value: "semiconductor", label: "Semiconductor" },
+        { value: "downstream-oil-gas", label: "Downstream Oil & Gas" },
+        { value: "midstream-oil-gas", label: "Midstream Oil & Gas" },
+        { value: "data-centers", label: "Data Centers" },
+      ] },
+      { name: "website", label: "Website", kind: "text" },
+      { name: "display_order", label: "Display Order", kind: "number" },
+      { name: "published", label: "Published", kind: "boolean" },
+    ],
+  },
   projects: {
     key: "projects",
     table: "projects",
@@ -149,7 +180,7 @@ export const ENTITIES: Record<EntityKey, EntityConfig> = {
     fields: [
       { name: "title", label: "Title", kind: "text", required: true },
       { name: "slug", label: "Slug", kind: "text", required: true },
-      { name: "client", label: "Client", kind: "text" },
+      { name: "client", label: "Client", kind: "reference", refEntity: "clients", refValueField: "name", refLabelField: "name" },
       { name: "location", label: "Location", kind: "text" },
       { name: "excerpt", label: "Excerpt", kind: "textarea" },
       { name: "featured_image", label: "Featured Image", kind: "image" },

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
 import slugify from "slugify";
@@ -207,6 +207,9 @@ function FieldRow({
       </div>
     );
   }
+  if (field.kind === "reference") {
+    return <ReferenceField field={field} value={value} onChange={onChange} labelEl={labelEl} />;
+  }
   if (field.kind === "tags") {
     const text = Array.isArray(value) ? value.join(", ") : "";
     return (
@@ -274,6 +277,67 @@ function FieldRow({
         required={field.required}
         className="w-full px-3 py-2 border border-brand-200 rounded-lg focus:outline-none focus:border-brand-accent"
       />
+    </div>
+  );
+}
+
+// Dropdown whose options are loaded live from another table (e.g. the Client
+// field on a Project pulls its options from the clients table).
+function ReferenceField({
+  field,
+  value,
+  onChange,
+  labelEl,
+}: {
+  field: FieldDef;
+  value: Value;
+  onChange: (v: Value) => void;
+  labelEl: React.ReactNode;
+}) {
+  const [options, setOptions] = useState<{ value: string; label: string }[]>([]);
+
+  useEffect(() => {
+    if (!field.refEntity) return;
+    let active = true;
+    const vf = field.refValueField ?? "name";
+    const lf = field.refLabelField ?? "name";
+    fetch(`/api/admin/${field.refEntity}`)
+      .then((r) => (r.ok ? r.json() : []))
+      .then((rows: Record<string, unknown>[]) => {
+        if (!active || !Array.isArray(rows)) return;
+        setOptions(
+          rows
+            .map((r) => ({ value: String(r[vf] ?? ""), label: String(r[lf] ?? "") }))
+            .filter((o) => o.value)
+        );
+      })
+      .catch(() => {});
+    return () => {
+      active = false;
+    };
+  }, [field.refEntity, field.refValueField, field.refLabelField]);
+
+  const current = typeof value === "string" ? value : "";
+  // Keep a legacy/free-text value selectable even if it's not in the list.
+  const currentListed = current === "" || options.some((o) => o.value === current);
+
+  return (
+    <div>
+      {labelEl}
+      <select
+        id={field.name}
+        value={current}
+        onChange={(e) => onChange(e.target.value)}
+        className="w-full max-w-md px-3 py-2 border border-brand-200 rounded-lg focus:outline-none focus:border-brand-accent bg-white"
+      >
+        <option value="">— select —</option>
+        {!currentListed && <option value={current}>{current} (unlisted)</option>}
+        {options.map((o) => (
+          <option key={o.value} value={o.value}>
+            {o.label}
+          </option>
+        ))}
+      </select>
     </div>
   );
 }

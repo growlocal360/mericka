@@ -78,6 +78,24 @@ export const crafts = [
   },
 ] as const;
 
+// Client roster — powers the homepage logo scroller, the Projects page
+// "Trusted By" showcase, and the Client dropdown on the Project admin form.
+// This is the fallback; the live list is managed in the CMS (clients table).
+export const clients = [
+  { name: "ExxonMobil", logo: "/clients/exxonmobil.svg", sector: "downstream-oil-gas" },
+  { name: "Chevron Phillips Chemical", logo: "/clients/chevron-phillips.svg", sector: "petrochemical" },
+  { name: "SpaceX", logo: "/clients/spacex.svg", sector: "aerospace" },
+  { name: "Kiewit", logo: "/clients/kiewit.jpg", sector: "data-centers" },
+  { name: "Targa Resources", logo: "/clients/targa.jpg", sector: "midstream-oil-gas" },
+  { name: "Hilcorp", logo: "/clients/hilcorp.svg", sector: "midstream-oil-gas" },
+  { name: "Venture Global", logo: "/clients/venture-global.svg", sector: "midstream-oil-gas" },
+  { name: "Saulsbury Industries", logo: "/clients/saulsbury.svg", sector: "petrochemical" },
+  { name: "Performance Contractors", logo: "/clients/performance-contractors.png", sector: "petrochemical" },
+  { name: "CCC Group", logo: "/clients/ccc-group.jpg", sector: "petrochemical" },
+  { name: "Kent", logo: "/clients/kent.svg", sector: "petrochemical" },
+  { name: "State of Washington", logo: "/clients/state-of-washington.svg", sector: "aerospace" },
+] as const;
+
 // Which service (craft) pages have a sector-specific sub-service (combo) page,
 // and that combo's service slug. Only Scaffolding & Access currently.
 export const craftComboService: Record<string, string> = {

@@ -1,4 +1,5 @@
 import Hero from "@/components/Hero";
+import ClientMarquee from "@/components/ClientMarquee";
 import ServicesOverview from "@/components/ServicesOverview";
 import CapabilitiesOverview from "@/components/CapabilitiesOverview";
 import ImageMarquee from "@/components/ImageMarquee";
@@ -13,6 +14,7 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+      <ClientMarquee />
       <ServicesOverview />
       <CapabilitiesOverview />
       <ImageMarquee />
