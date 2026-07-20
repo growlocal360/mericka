@@ -44,7 +44,6 @@ values
    array[
      'Tube-and-clamp and systems scaffolding',
      'Elevated work platforms and stair towers',
-     'Rope access for hard-to-reach areas',
      'Scaffold inspection and tagging programs'
    ],
    'From refineries to launch pads, Mericka Group builds the safe, reliable access your crews need to get the job done — engineered, tracked, and managed down to the single scaffold.',

@@ -219,7 +219,7 @@ insert into sectors (slug, name, icon, display_order, published) values
   ('midstream-oil-gas', 'Midstream Oil & Gas', 'Droplet', 6, true);
 
 insert into services (slug, name, tagline, phase, display_order, published) values
-  ('scaffolding-and-access-solutions', 'Scaffolding & Access Solutions', 'Scaffolding, elevated work platforms, stair towers, and rope access.', 'execution', 1, true),
+  ('scaffolding-and-access-solutions', 'Scaffolding & Access Solutions', 'Scaffolding, elevated work platforms, and stair towers.', 'execution', 1, true),
   ('turnaround-and-outage-support', 'Turnaround & Outage Support', 'Data-driven soft-craft execution for turnarounds and outages.', 'maintenance-outage', 2, true),
   ('nested-facility-maintenance-programs', 'Nested Facility Maintenance Programs', 'Multi-skilled crews and data-driven planning for ongoing site maintenance.', 'maintenance-outage', 3, true),
   ('subcontracting-partnerships', 'Subcontracting Partnerships', 'A trusted soft-craft ally for your next project, on schedule and on budget.', 'execution', 4, true),

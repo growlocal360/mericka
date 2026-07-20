@@ -13,7 +13,7 @@ update services set
   hero_image_url = '/images/scaffolding.jpg',
   benefits = array[
     'Accurate tracking saves you time and money while mitigating site congestion',
-    'Industry-leading rope access procedures protect your safety record',
+    'Industry-leading access procedures protect your safety record',
     'Innovative solutions keep your organization future-ready',
     'A massive skilled labor pool keeps your site fully staffed'
   ],
@@ -21,9 +21,9 @@ update services set
     'EMMS scaffold tracking down to the craftsman and single scaffold',
     'Workfront planning, crew accountability, and resource level-loading',
     'Timely reporting so you can manage projects with less time committed',
-    'Scaffolding, elevated work platforms, stair towers, and rope access'
+    'Scaffolding, elevated work platforms, and stair towers'
   ],
-  summary = 'Transform your projects with Mericka Group''s Scaffolding & Access Solutions. From scaffolding services, elevated work platforms, stair towers, and rope access, we have you covered from top to bottom — delivering reliable execution and data-driven results that eliminate schedule delays and enhance project efficiency.'
+  summary = 'Transform your projects with Mericka Group''s Scaffolding & Access Solutions. From scaffolding services, elevated work platforms, and stair towers, we have you covered from top to bottom — delivering reliable execution and data-driven results that eliminate schedule delays and enhance project efficiency.'
 where slug = 'scaffolding-and-access-solutions';
 
 update services set
@@ -173,6 +173,6 @@ update sectors set
   description = '{"type":"doc","content":[
     {"type":"paragraph","content":[{"type":"text","text":"Data centers are mission-critical, fast-track builds where speed, certainty, and control define success. These hyperscale and colocation facilities demand high-reliability infrastructure and tightly coordinated trades delivered on aggressive schedules with no margin for delay."}]},
     {"type":"paragraph","content":[{"type":"text","text":"For Mericka Group, the data center market is a strategic partnership with leading General Contractors — combining pre-construction advisory services rooted in energy-sector best practices with high-quality self-performed trade execution, including fast-track sequencing, speed-to-market optimization, work-at-heights coordination, and industry-leading safety and quality programs."}]},
-    {"type":"paragraph","content":[{"type":"text","text":"From scaffolding, rope access, coatings, and surface preparation to insulation and specialized access, Mericka Group delivers integrated, high-performance solutions tailored to complex, fast-track data center programs."}]}
+    {"type":"paragraph","content":[{"type":"text","text":"From scaffolding, coatings, and surface preparation to insulation and specialized access, Mericka Group delivers integrated, high-performance solutions tailored to complex, fast-track data center programs."}]}
   ]}'::jsonb
 where slug = 'data-centers';

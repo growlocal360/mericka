@@ -17,7 +17,7 @@ export const services = [
     title: "Scaffolding & Access Solutions",
     slug: "scaffolding-and-access-solutions",
     img: "/images/scaffolding.jpg",
-    points: ["Scaffold erection", "Elevated work platforms", "Stair towers & rope access"],
+    points: ["Scaffold erection", "Elevated work platforms", "Stair towers"],
   },
   {
     title: "Turnaround & Outage Support",
@@ -56,7 +56,7 @@ export const crafts = [
     title: "Scaffolding & Access",
     slug: "scaffolding",
     img: "/images/scaffolding.jpg",
-    points: ["Work at any height", "Stair towers & platforms", "Rope access"],
+    points: ["Work at any height", "Stair towers & platforms", "Scaffold inspection & tagging"],
   },
   {
     title: "Industrial Coatings & Painting",
