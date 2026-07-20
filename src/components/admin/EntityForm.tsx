@@ -211,26 +211,7 @@ function FieldRow({
     return <ReferenceField field={field} value={value} onChange={onChange} labelEl={labelEl} />;
   }
   if (field.kind === "tags") {
-    const text = Array.isArray(value) ? value.join(", ") : "";
-    return (
-      <div>
-        {labelEl}
-        <input
-          id={field.name}
-          type="text"
-          value={text}
-          onChange={(e) =>
-            onChange(
-              e.target.value
-                .split(",")
-                .map((s) => s.trim())
-                .filter(Boolean)
-            )
-          }
-          className="w-full px-3 py-2 border border-brand-200 rounded-lg focus:outline-none focus:border-brand-accent"
-        />
-      </div>
-    );
+    return <TagsField field={field} value={value} onChange={onChange} labelEl={labelEl} />;
   }
   if (field.kind === "image") {
     return (
@@ -277,6 +258,51 @@ function FieldRow({
         required={field.required}
         className="w-full px-3 py-2 border border-brand-200 rounded-lg focus:outline-none focus:border-brand-accent"
       />
+    </div>
+  );
+}
+
+// List field, one item per line. Newlines (rather than commas) are the
+// separator so a single item can itself contain commas — e.g. "Corrosion
+// mitigation for tanks, pipe, concrete, and steel". Keeps its own text state
+// so half-typed lines and trailing blank lines survive while editing; the
+// trimmed array is what gets saved.
+function TagsField({
+  field,
+  value,
+  onChange,
+  labelEl,
+}: {
+  field: FieldDef;
+  value: Value;
+  onChange: (v: Value) => void;
+  labelEl: React.ReactNode;
+}) {
+  const [text, setText] = useState(() => (Array.isArray(value) ? value.join("\n") : ""));
+
+  function handle(next: string) {
+    setText(next);
+    onChange(
+      next
+        .split("\n")
+        .map((s) => s.trim())
+        .filter(Boolean)
+    );
+  }
+
+  return (
+    <div>
+      {labelEl}
+      <textarea
+        id={field.name}
+        rows={5}
+        value={text}
+        onChange={(e) => handle(e.target.value)}
+        className="w-full px-3 py-2 border border-brand-200 rounded-lg focus:outline-none focus:border-brand-accent"
+      />
+      <p className="mt-1.5 text-xs text-brand-500">
+        One item per line. Commas inside a line are kept as-is.
+      </p>
     </div>
   );
 }
