@@ -53,11 +53,36 @@ export interface EntityConfig {
 }
 
 export const ENTITIES: Record<EntityKey, EntityConfig> = {
+  // The 4 live services the site shows in the nav, footer, and homepage.
+  // Backed by the `crafts` table (/scaffolding, /industrial-coatings, ...).
   services: {
     key: "services",
-    table: "services",
+    table: "crafts",
     label: "Services",
     labelSingular: "Service",
+    titleField: "name",
+    fields: [
+      { name: "name", label: "Name", kind: "text", required: true },
+      { name: "slug", label: "Slug", kind: "text", required: true },
+      { name: "tagline", label: "Tagline", kind: "text" },
+      { name: "positioning_headline", label: "Positioning Headline", kind: "text" },
+      { name: "benefits", label: "Key Benefits (comma separated)", kind: "tags", arrayValues: true },
+      { name: "capabilities", label: "Capabilities (comma separated)", kind: "tags", arrayValues: true },
+      { name: "summary", label: "What We Do (summary)", kind: "textarea" },
+      { name: "icon", label: "Lucide Icon Name", kind: "text" },
+      { name: "hero_image_url", label: "Hero Image", kind: "image" },
+      { name: "description", label: "Description (optional, extra detail)", kind: "rich" },
+      { name: "display_order", label: "Display Order", kind: "number" },
+      { name: "published", label: "Published", kind: "boolean" },
+    ],
+  },
+  // Legacy program pages carried over from the previous site.
+  // Backed by the `services` table (/scaffolding-and-access-solutions, ...).
+  capabilities: {
+    key: "capabilities",
+    table: "services",
+    label: "Capabilities",
+    labelSingular: "Capability",
     titleField: "name",
     fields: [
       { name: "name", label: "Name", kind: "text", required: true },
@@ -72,27 +97,6 @@ export const ENTITIES: Record<EntityKey, EntityConfig> = {
         { value: "execution", label: "Execution" },
         { value: "maintenance-outage", label: "Maintenance & Outage" },
       ] },
-      { name: "icon", label: "Lucide Icon Name", kind: "text" },
-      { name: "hero_image_url", label: "Hero Image", kind: "image" },
-      { name: "description", label: "Description (optional, extra detail)", kind: "rich" },
-      { name: "display_order", label: "Display Order", kind: "number" },
-      { name: "published", label: "Published", kind: "boolean" },
-    ],
-  },
-  capabilities: {
-    key: "capabilities",
-    table: "crafts",
-    label: "Capabilities",
-    labelSingular: "Capability",
-    titleField: "name",
-    fields: [
-      { name: "name", label: "Name", kind: "text", required: true },
-      { name: "slug", label: "Slug", kind: "text", required: true },
-      { name: "tagline", label: "Tagline", kind: "text" },
-      { name: "positioning_headline", label: "Positioning Headline", kind: "text" },
-      { name: "benefits", label: "Key Benefits (comma separated)", kind: "tags", arrayValues: true },
-      { name: "capabilities", label: "Capabilities (comma separated)", kind: "tags", arrayValues: true },
-      { name: "summary", label: "What We Do (summary)", kind: "textarea" },
       { name: "icon", label: "Lucide Icon Name", kind: "text" },
       { name: "hero_image_url", label: "Hero Image", kind: "image" },
       { name: "description", label: "Description (optional, extra detail)", kind: "rich" },
