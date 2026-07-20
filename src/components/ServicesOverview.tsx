@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import { services } from "@/lib/brand";
+import { crafts } from "@/lib/brand";
 
 export default function ServicesOverview() {
   return (
@@ -21,39 +21,39 @@ export default function ServicesOverview() {
             What We Do
           </span>
           <h2 className="mt-3 text-4xl sm:text-5xl font-bold text-brand-900">
-            Services across every phase
+            The services behind every project
           </h2>
           <p className="mt-5 text-lg text-brand-600 leading-relaxed">
-            From pre-construction planning to outage turnarounds, we staff and
-            execute the disciplines that keep industrial facilities running.
+            Scaffold, paint, insulation, and fireproofing — the soft-craft
+            disciplines we self-perform across every sector we serve.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8">
-          {services.map((s, index) => (
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {crafts.map((c, index) => (
             <motion.div
-              key={s.slug}
+              key={c.slug}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
             >
               <Link
-                href={`/${s.slug}`}
-                className="relative block h-96 rounded-2xl overflow-hidden group"
+                href={`/${c.slug}`}
+                className="relative block h-96 rounded-2xl overflow-hidden group bg-brand-900"
               >
                 <Image
-                  src={s.img}
-                  alt={s.title}
+                  src={c.img}
+                  alt={c.title}
                   fill
-                  sizes="(max-width: 768px) 100vw, 33vw"
+                  sizes="(max-width: 768px) 100vw, 25vw"
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-950 via-brand-900/60 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-7">
-                  <h3 className="text-2xl font-bold text-white mb-3">{s.title}</h3>
+                  <h3 className="text-2xl font-bold text-white mb-3">{c.title}</h3>
                   <ul className="space-y-1 mb-4">
-                    {s.points.map((p) => (
+                    {c.points.map((p) => (
                       <li key={p} className="text-sm text-brand-200 flex items-center gap-2">
                         <span className="w-1 h-1 rounded-full bg-brand-accent" />
                         {p}
@@ -61,12 +61,21 @@ export default function ServicesOverview() {
                     ))}
                   </ul>
                   <span className="inline-flex items-center gap-1 text-brand-accent group-hover:text-brand-highlight transition-colors text-sm font-semibold">
-                    {s.cta} <ArrowRight className="w-4 h-4" />
+                    {c.cta} <ArrowRight className="w-4 h-4" />
                   </span>
                 </div>
               </Link>
             </motion.div>
           ))}
+        </div>
+
+        <div className="mt-12 text-center">
+          <Link
+            href="/energy-services"
+            className="inline-flex items-center gap-2 text-brand-accent hover:text-brand-highlight font-semibold"
+          >
+            Explore all energy services <ArrowRight className="w-4 h-4" />
+          </Link>
         </div>
       </div>
     </section>

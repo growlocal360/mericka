@@ -1,7 +1,6 @@
 import Hero from "@/components/Hero";
 import ClientMarquee from "@/components/ClientMarquee";
 import ServicesOverview from "@/components/ServicesOverview";
-import CapabilitiesOverview from "@/components/CapabilitiesOverview";
 import ImageMarquee from "@/components/ImageMarquee";
 import StatsBar from "@/components/StatsBar";
 import ProjectsShowcase from "@/components/ProjectsShowcase";
@@ -16,7 +15,6 @@ export default function HomePage() {
       <Hero />
       <ClientMarquee />
       <ServicesOverview />
-      <CapabilitiesOverview />
       <ImageMarquee />
       <StatsBar />
       <ProjectsShowcase />
