@@ -18,7 +18,7 @@ const STEPS = [
   {
     n: "03",
     title: "Execute",
-    body: "We start delivering results right away, leveraging EMMS to monitor progress and drive continuous improvement.",
+    body: "We start delivering results right away, leveraging Proprietary Software (EMMS) to monitor progress and drive continuous improvement.",
   },
 ];
 

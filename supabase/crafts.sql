@@ -38,7 +38,7 @@ values
    array[
      'Safe, code-compliant access for work at any height',
      'Engineered scaffold designs for complex geometries',
-     'EMMS tracking down to the single scaffold',
+     'Proprietary Software (EMMS) tracking down to the single scaffold',
      'Rapid erection and dismantle to protect your schedule'
    ],
    array[

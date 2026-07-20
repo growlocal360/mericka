@@ -18,7 +18,7 @@ update services set
     'A massive skilled labor pool keeps your site fully staffed'
   ],
   capabilities = array[
-    'EMMS scaffold tracking down to the craftsman and single scaffold',
+    'Proprietary Software (EMMS) scaffold tracking down to the craftsman and single scaffold',
     'Workfront planning, crew accountability, and resource level-loading',
     'Timely reporting so you can manage projects with less time committed',
     'Scaffolding, elevated work platforms, and stair towers'
@@ -37,7 +37,7 @@ update services set
   ],
   capabilities = array[
     'Industry-leading expertise from hundreds of large turnarounds',
-    'EMMS workfront planning and crew accountability for on-schedule results',
+    'Proprietary Software (EMMS) workfront planning and crew accountability for on-schedule results',
     'Accurate, punctual reporting that takes less of your time',
     'A massive skilled labor pool, even for emergency coverage'
   ],
@@ -54,7 +54,7 @@ update services set
     'Aging assets demand higher quality and safety results'
   ],
   capabilities = array[
-    'EMMS workfront planning and crew accountability for consistent results',
+    'Proprietary Software (EMMS) workfront planning and crew accountability for consistent results',
     'A multi-skilled labor pool that covers your site, even in emergencies',
     'Timely reporting so you can manage projects with less time committed',
     'In-house Quality and Safety programs built to exceed expectations'
@@ -73,7 +73,7 @@ update services set
   ],
   capabilities = array[
     'Every project treated as a unique problem to minimize cost and maximize efficiency',
-    'EMMS workfront planning, crew accountability, and the data you need to manage',
+    'Proprietary Software (EMMS) workfront planning, crew accountability, and the data you need to manage',
     'A collaborative Pre-Job Process so we start and finish on the same page',
     'Quality and Safety programs aimed at zero injuries and minimal rework'
   ],
@@ -91,7 +91,7 @@ update services set
   ],
   capabilities = array[
     'Years of tank expertise for maximum asset longevity and faster time to market',
-    'EMMS workfront planning and crew accountability for consistent results',
+    'Proprietary Software (EMMS) workfront planning and crew accountability for consistent results',
     'Accurate, punctual reporting that takes less of your time',
     'Coating and blasting robotics for efficient, cost-effective work'
   ],
@@ -110,7 +110,7 @@ update services set
   capabilities = array[
     'Timely reporting to manage multiple projects at once in less time',
     'DOT-compliant data tracking and storage to help you pass your next audit',
-    'EMMS workfront planning and crew accountability for constant results',
+    'Proprietary Software (EMMS) workfront planning and crew accountability for constant results',
     'Diverse, multi-skilled manpower so projects combine with ease'
   ],
   summary = 'Transform your pipeline maintenance with Mericka Group''s expertise. Our proven methods safeguard against corrosion and ensure DOT compliance, delivering reliable execution that keeps schedules intact. With crews experienced in soil-to-air transitions, lead and asbestos abatement, coatings, scaffold, and insulation, we are your one-stop shop for soft craft solutions.'
