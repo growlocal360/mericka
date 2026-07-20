@@ -1,6 +1,11 @@
 -- =========================================================================
 -- Mericka Group — Sector x Service matrix pages
--- Run on the live database. Idempotent / safe to re-run.
+--
+-- !! SUPERSEDED — DO NOT RE-RUN THIS WHOLE FILE !!
+-- Only the 4 'scaffolding-and-access-solutions' rows are live. The other 16
+-- were retired via supabase/prune-sector-services.sql, and re-running this
+-- file would resurrect them. Kept so that content stays recoverable —
+-- copy out just the individual row you need.
 -- =========================================================================
 
 create table if not exists sector_services (

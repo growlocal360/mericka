@@ -128,22 +128,13 @@ export const ENTITIES: Record<EntityKey, EntityConfig> = {
     labelSingular: "Sector Service",
     titleField: "title",
     fields: [
-      { name: "sector_slug", label: "Sector", kind: "select", required: true, options: [
-        { value: "aerospace", label: "Aerospace" },
-        { value: "petrochemical", label: "Petrochemical" },
-        { value: "semiconductor", label: "Semiconductor" },
-        { value: "downstream-oil-gas", label: "Downstream Oil & Gas" },
-        { value: "midstream-oil-gas", label: "Midstream Oil & Gas" },
-        { value: "data-centers", label: "Data Centers" },
-      ] },
-      { name: "service_slug", label: "Service", kind: "select", required: true, options: [
-        { value: "scaffolding-and-access-solutions", label: "Scaffolding & Access Solutions" },
-        { value: "turnaround-and-outage-support", label: "Turnaround & Outage Support" },
-        { value: "nested-facility-maintenance-programs", label: "Nested Facility Maintenance Programs" },
-        { value: "subcontracting-partnerships", label: "Subcontracting Partnerships" },
-        { value: "comprehensive-storage-tank-services", label: "Comprehensive Storage Tank Services" },
-        { value: "pipeline-maintenance-programs", label: "Pipeline Maintenance Programs" },
-      ] },
+      // Both dropdowns read live from their own tables, so any sector or
+      // service added later is immediately available here — no code change
+      // needed to build new sector × service pages.
+      { name: "sector_slug", label: "Sector", kind: "reference", required: true,
+        refEntity: "sectors", refValueField: "slug", refLabelField: "name" },
+      { name: "service_slug", label: "Service", kind: "reference", required: true,
+        refEntity: "services", refValueField: "slug", refLabelField: "name" },
       { name: "title", label: "Title", kind: "text", required: true },
       { name: "meta_description", label: "Meta Description", kind: "textarea" },
       { name: "hero_image_url", label: "Hero Image", kind: "image" },
