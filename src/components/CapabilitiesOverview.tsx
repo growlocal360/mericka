@@ -62,7 +62,7 @@ export default function CapabilitiesOverview() {
                     ))}
                   </ul>
                   <span className="inline-flex items-center gap-1 text-brand-accent group-hover:text-brand-highlight transition-colors text-sm font-semibold">
-                    Learn more <ArrowRight className="w-4 h-4" />
+                    {c.cta} <ArrowRight className="w-4 h-4" />
                   </span>
                 </div>
               </Link>

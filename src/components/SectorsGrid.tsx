@@ -69,7 +69,7 @@ export default function SectorsGrid({
                   <h3 className="text-xl font-bold text-brand-900 mb-2">{s.name}</h3>
                   <p className="text-sm text-brand-600 leading-relaxed mb-5">{s.description}</p>
                   <span className="inline-flex items-center gap-1 text-brand-accent group-hover:text-brand-highlight transition-colors text-sm font-semibold">
-                    Learn more <ArrowRight className="w-4 h-4" />
+                    {s.cta} <ArrowRight className="w-4 h-4" />
                   </span>
                 </Link>
               </motion.div>

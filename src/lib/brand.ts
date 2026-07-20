@@ -18,36 +18,42 @@ export const services = [
     slug: "scaffolding-and-access-solutions",
     img: "/images/scaffolding.jpg",
     points: ["Scaffold erection", "Elevated work platforms", "Stair towers"],
+    cta: "See the access scope",
   },
   {
     title: "Turnaround & Outage Support",
     slug: "turnaround-and-outage-support",
     img: "/images/product-page-scaffolding-and-turnaround.jpg",
     points: ["Planned turnarounds", "Outage execution", "Emergency callouts"],
+    cta: "Plan your turnaround",
   },
   {
     title: "Nested Facility Maintenance Programs",
     slug: "nested-facility-maintenance-programs",
     img: "/images/Nested-Maintenance-Background-Picture.jpg",
     points: ["Multi-skilled crews", "Data-driven planning", "On-site coverage"],
+    cta: "Staff your site",
   },
   {
     title: "Subcontracting Partnerships",
     slug: "subcontracting-partnerships",
     img: "/images/scaffold-background-2.jpg",
     points: ["Soft-craft labor", "Schedule reliability", "A trusted ally"],
+    cta: "Partner with us",
   },
   {
     title: "Comprehensive Storage Tank Services",
     slug: "comprehensive-storage-tank-services",
     img: "/images/tank-services.jpg",
     points: ["Inspection & repair", "Coatings & linings", "Asset protection"],
+    cta: "Extend tank life",
   },
   {
     title: "Pipeline Maintenance Programs",
     slug: "pipeline-maintenance-programs",
     img: "/images/more-pipes.jpg",
     points: ["Maintenance programs", "Compliance support", "Integrity management"],
+    cta: "Protect your pipeline",
   },
 ] as const;
 
@@ -57,24 +63,28 @@ export const crafts = [
     slug: "scaffolding",
     img: "/images/scaffolding.jpg",
     points: ["Work at any height", "Stair towers & platforms", "Scaffold inspection & tagging"],
+    cta: "Reach any height",
   },
   {
     title: "Industrial Coatings & Painting",
     slug: "industrial-coatings",
     img: "/images/paint-spray.jpg",
     points: ["Blasting & surface prep", "Protective coatings", "Tank liners"],
+    cta: "Fight corrosion",
   },
   {
     title: "Insulation",
     slug: "insulation",
     img: "/images/pipes.jpg",
     points: ["Hot & cold systems", "Removable blankets", "Jacketing"],
+    cta: "Cut energy loss",
   },
   {
     title: "Fireproofing",
     slug: "fireproofing",
     img: "/images/Fireproofing.jpg",
     points: ["Cementitious", "Intumescent", "Steel & vessel skirts"],
+    cta: "Buy critical time",
   },
 ] as const;
 
@@ -104,17 +114,23 @@ export const craftComboService: Record<string, string> = {
 
 export const sectors = [
   { name: "Downstream Oil & Gas", slug: "downstream-oil-gas", icon: "Waves",
-    description: "Refining, processing, and product distribution facilities operating around the clock." },
+    description: "Refining, processing, and product distribution facilities operating around the clock.",
+    cta: "Keep the units running" },
   { name: "Petrochemical", slug: "petrochemical", icon: "FlaskConical",
-    description: "Complex chemical plants where safety, precision, and uptime are non-negotiable." },
+    description: "Complex chemical plants where safety, precision, and uptime are non-negotiable.",
+    cta: "Inside the plant" },
   { name: "Aerospace", slug: "aerospace", icon: "Rocket",
-    description: "Cleanroom-adjacent and high-spec environments for aerospace manufacturing." },
+    description: "Cleanroom-adjacent and high-spec environments for aerospace manufacturing.",
+    cta: "Where precision counts" },
   { name: "Data Centers", slug: "data-centers", icon: "Cpu",
-    description: "Mission-critical hyperscale and colocation builds with no margin for delay." },
+    description: "Mission-critical hyperscale and colocation builds with no margin for delay.",
+    cta: "How we keep pace" },
   { name: "Semiconductor", slug: "semiconductor", icon: "Microchip",
-    description: "Fab construction and outage support with cleanroom protocol awareness." },
+    description: "Fab construction and outage support with cleanroom protocol awareness.",
+    cta: "Step inside the fab" },
   { name: "Midstream Oil & Gas", slug: "midstream-oil-gas", icon: "Droplet",
-    description: "Pipelines, gathering, and storage assets across the energy corridor." },
+    description: "Pipelines, gathering, and storage assets across the energy corridor.",
+    cta: "Follow the pipeline" },
 ] as const;
 
 export const stats = [

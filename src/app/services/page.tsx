@@ -20,6 +20,10 @@ export const metadata = {
   description: "Scaffolding, tank services, turnaround, and maintenance disciplines.",
 };
 
+// DB rows don't carry a CTA, so pull the tailored one from brand.ts by slug.
+const ctaFor = (slug: string) =>
+  fallback.find((f) => f.slug === slug)?.cta ?? "Learn more";
+
 export default async function ServicesIndex() {
   const fromDb = await safeList<Service>((sb) =>
     sb.from("services")
@@ -75,7 +79,7 @@ export default async function ServicesIndex() {
                 <h2 className="text-xl font-bold text-brand-900 mb-2">{s.name}</h2>
                 {s.tagline && <p className="text-sm text-brand-600 mb-4">{s.tagline}</p>}
                 <span className="inline-flex items-center gap-1 text-brand-accent group-hover:text-brand-highlight transition-colors text-sm font-semibold">
-                  Learn more <ArrowRight className="w-4 h-4" />
+                  {ctaFor(s.slug)} <ArrowRight className="w-4 h-4" />
                 </span>
               </div>
             </Link>
