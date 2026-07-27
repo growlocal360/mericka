@@ -51,6 +51,15 @@ export default function EntityForm({ entity, initial, mode }: Props) {
     set("slug", slugify(titleVal, { lower: true, strict: true }));
   }
 
+  function normalizeSlug() {
+    // Clean whatever's in the slug field on blur so a pasted title/sentence
+    // can't be saved as an invalid slug (spaces, capitals, punctuation).
+    const v = state["slug"];
+    if (typeof v !== "string" || !v) return;
+    const cleaned = slugify(v, { lower: true, strict: true });
+    if (cleaned !== v) set("slug", cleaned);
+  }
+
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
     setSaving(true);
@@ -102,7 +111,7 @@ export default function EntityForm({ entity, initial, mode }: Props) {
   return (
     <form onSubmit={onSubmit} className="space-y-6 max-w-3xl">
       {entity.fields.map((f) => (
-        <FieldRow key={f.name} field={f} value={state[f.name]} onChange={(v) => set(f.name, v)} onTitleBlur={f.name === entity.titleField ? autoSlug : undefined} />
+        <FieldRow key={f.name} field={f} value={state[f.name]} onChange={(v) => set(f.name, v)} onTitleBlur={f.name === entity.titleField ? autoSlug : f.name === "slug" ? normalizeSlug : undefined} />
       ))}
       {error && <p className="text-sm text-brand-highlight">{error}</p>}
       <div className="flex items-center gap-3 pt-2">

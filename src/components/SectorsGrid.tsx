@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, Waves, FlaskConical, Rocket, Cpu, Microchip, Droplet, LucideIcon } from "lucide-react";
+import { ArrowRight, Waves, FlaskConical, Rocket, Cpu, Microchip, Droplet, Factory, Building2, Zap, Flame, UtensilsCrossed, Landmark, LucideIcon } from "lucide-react";
 import { sectors as sectorsFallback } from "@/lib/brand";
 import type { SectorCard } from "@/lib/taxonomy";
 
@@ -13,6 +13,13 @@ const iconMap: Record<string, LucideIcon> = {
   Cpu,
   Microchip,
   Droplet,
+  Factory,
+  Building2,
+  building: Building2,
+  Zap,
+  Flame,
+  UtensilsCrossed,
+  Landmark,
 };
 
 export default function SectorsGrid({
@@ -50,7 +57,7 @@ export default function SectorsGrid({
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {sectors.map((s, i) => {
-            const Icon = iconMap[s.icon] ?? Waves;
+            const Icon = iconMap[s.icon] ?? Factory;
             return (
               <motion.div
                 key={s.slug}

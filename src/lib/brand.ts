@@ -94,7 +94,7 @@ export const crafts = [
 export const clients = [
   { name: "ExxonMobil", logo: "/clients/exxonmobil.svg", sector: "downstream-oil-gas" },
   { name: "Chevron Phillips Chemical", logo: "/clients/chevron-phillips.svg", sector: "petrochemical" },
-  { name: "SpaceX", logo: "/clients/spacex.svg", sector: "aerospace" },
+  { name: "SpaceX", logo: "/clients/spacex.svg", sector: "advanced-manufacturing" },
   { name: "Kiewit", logo: "/clients/kiewit.jpg", sector: "data-centers" },
   { name: "Targa Resources", logo: "/clients/targa.jpg", sector: "midstream-oil-gas" },
   { name: "Hilcorp", logo: "/clients/hilcorp.svg", sector: "midstream-oil-gas" },
@@ -103,7 +103,7 @@ export const clients = [
   { name: "Performance Contractors", logo: "/clients/performance-contractors.png", sector: "petrochemical" },
   { name: "CCC Group", logo: "/clients/ccc-group.jpg", sector: "petrochemical" },
   { name: "Kent", logo: "/clients/kent.svg", sector: "petrochemical" },
-  { name: "State of Washington", logo: "/clients/state-of-washington.svg", sector: "aerospace" },
+  { name: "State of Washington", logo: "/clients/state-of-washington.svg", sector: "advanced-manufacturing" },
 ] as const;
 
 // Which service (craft) pages have a sector-specific sub-service (combo) page,
@@ -119,8 +119,8 @@ export const sectors = [
   { name: "Petrochemical", slug: "petrochemical", icon: "FlaskConical",
     description: "Complex chemical plants where safety, precision, and uptime are non-negotiable.",
     cta: "Inside the plant" },
-  { name: "Aerospace", slug: "aerospace", icon: "Rocket",
-    description: "Cleanroom-adjacent and high-spec environments for aerospace manufacturing.",
+  { name: "Advanced Manufacturing", slug: "advanced-manufacturing", icon: "Factory",
+    description: "Cleanroom-adjacent and high-spec environments for advanced manufacturing.",
     cta: "Where precision counts" },
   { name: "Data Centers", slug: "data-centers", icon: "Cpu",
     description: "Mission-critical hyperscale and colocation builds with no margin for delay.",

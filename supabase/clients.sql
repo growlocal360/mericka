@@ -29,7 +29,7 @@ create policy "admin all clients" on clients for all to authenticated using (tru
 insert into clients (name, logo_url, sector_slug, display_order, published) values
   ('ExxonMobil',                '/clients/exxonmobil.svg',            'downstream-oil-gas', 1,  true),
   ('Chevron Phillips Chemical', '/clients/chevron-phillips.svg',      'petrochemical',      2,  true),
-  ('SpaceX',                    '/clients/spacex.svg',                'aerospace',          3,  true),
+  ('SpaceX',                    '/clients/spacex.svg',                'advanced-manufacturing',          3,  true),
   ('Kiewit',                    '/clients/kiewit.jpg',                'data-centers',       4,  true),
   ('Targa Resources',          '/clients/targa.jpg',                 'midstream-oil-gas',  5,  true),
   ('Hilcorp',                   '/clients/hilcorp.svg',               'midstream-oil-gas',  6,  true),
@@ -38,7 +38,7 @@ insert into clients (name, logo_url, sector_slug, display_order, published) valu
   ('Performance Contractors',   '/clients/performance-contractors.png','petrochemical',     9,  true),
   ('CCC Group',                 '/clients/ccc-group.jpg',             'petrochemical',      10, true),
   ('Kent',                      '/clients/kent.svg',                  'petrochemical',      11, true),
-  ('State of Washington',       '/clients/state-of-washington.svg',   'aerospace',          12, true)
+  ('State of Washington',       '/clients/state-of-washington.svg',   'advanced-manufacturing',          12, true)
 on conflict (name) do update set
   logo_url = excluded.logo_url,
   sector_slug = excluded.sector_slug,
