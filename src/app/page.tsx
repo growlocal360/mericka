@@ -6,10 +6,12 @@ import StatsBar from "@/components/StatsBar";
 import ProjectsShowcase from "@/components/ProjectsShowcase";
 import SectorsGrid from "@/components/SectorsGrid";
 import CTASection from "@/components/CTASection";
+import { getSectorCards } from "@/lib/taxonomy";
 
 export const revalidate = 60;
 
-export default function HomePage() {
+export default async function HomePage() {
+  const sectors = await getSectorCards();
   return (
     <>
       <Hero />
@@ -18,7 +20,7 @@ export default function HomePage() {
       <ImageMarquee />
       <StatsBar />
       <ProjectsShowcase />
-      <SectorsGrid />
+      <SectorsGrid sectors={sectors} />
       <CTASection />
     </>
   );

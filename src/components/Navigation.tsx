@@ -6,7 +6,8 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Phone, ChevronDown } from "lucide-react";
 import clsx from "clsx";
-import { brand, sectors, crafts } from "@/lib/brand";
+import { brand, sectors as sectorsFallback, crafts as craftsFallback } from "@/lib/brand";
+import type { NavItem } from "@/lib/taxonomy";
 import GetInTouchButton from "@/components/GetInTouchButton";
 
 type DropdownKey = "services" | "capabilities" | "sectors" | "company" | null;
@@ -20,7 +21,13 @@ const companyLinks = [
   { href: "/contact", label: "Contact" },
 ];
 
-export default function Navigation() {
+export default function Navigation({
+  sectors = sectorsFallback.map((s) => ({ slug: s.slug, name: s.name })),
+  services = craftsFallback.map((c) => ({ slug: c.slug, name: c.title })),
+}: {
+  sectors?: NavItem[];
+  services?: NavItem[];
+}) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [open, setOpen] = useState<DropdownKey>(null);
@@ -58,7 +65,7 @@ export default function Navigation() {
             onEnter={() => setOpen("services")}
             onLeave={() => setOpen(null)}
             href="/energy-services"
-            items={crafts.map((c) => ({ href: `/${c.slug}`, label: c.title }))}
+            items={services.map((s) => ({ href: `/${s.slug}`, label: s.name }))}
           />
           <DropdownLink
             label="Sectors"
@@ -119,7 +126,7 @@ export default function Navigation() {
               transition={{ duration: 0.3, delay: 0.1 }}
               className="p-6 flex flex-col gap-1"
             >
-              <MobileGroup label="Services" href="/energy-services" items={crafts.map((c) => ({ href: `/${c.slug}`, label: c.title }))} onClick={() => setMobileOpen(false)} />
+              <MobileGroup label="Services" href="/energy-services" items={services.map((s) => ({ href: `/${s.slug}`, label: s.name }))} onClick={() => setMobileOpen(false)} />
               <MobileGroup label="Sectors" href="/sectors" items={sectors.map((s) => ({ href: `/${s.slug}`, label: s.name }))} onClick={() => setMobileOpen(false)} />
               <MobileGroup label="Company" href="/company" items={companyLinks} onClick={() => setMobileOpen(false)} />
               <a href={brand.phoneHref} className="mt-6 flex items-center gap-2 text-brand-200 hover:text-brand-highlight transition-colors py-3">

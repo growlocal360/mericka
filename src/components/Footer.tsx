@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Linkedin, Facebook, Instagram, Phone, Mail, MapPin } from "lucide-react";
-import { brand, crafts } from "@/lib/brand";
+import { brand, crafts as craftsFallback } from "@/lib/brand";
+import type { NavItem } from "@/lib/taxonomy";
 import GetInTouchButton from "@/components/GetInTouchButton";
 
 const companyLinks = [
@@ -42,7 +43,11 @@ function FooterCol({
   );
 }
 
-export default function Footer() {
+export default function Footer({
+  services = craftsFallback.map((c) => ({ slug: c.slug, name: c.title })),
+}: {
+  services?: NavItem[];
+}) {
   const year = new Date().getFullYear();
 
   return (
@@ -119,7 +124,7 @@ export default function Footer() {
           <FooterCol
             className="lg:col-span-3"
             label="Services"
-            links={crafts.map((s) => ({ href: `/${s.slug}`, label: s.title }))}
+            links={services.map((s) => ({ href: `/${s.slug}`, label: s.name }))}
           />
           <FooterCol className="lg:col-span-2" label="Company" links={companyLinks} />
 

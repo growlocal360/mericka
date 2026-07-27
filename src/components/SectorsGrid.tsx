@@ -3,7 +3,8 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Waves, FlaskConical, Rocket, Cpu, Microchip, Droplet, LucideIcon } from "lucide-react";
-import { sectors } from "@/lib/brand";
+import { sectors as sectorsFallback } from "@/lib/brand";
+import type { SectorCard } from "@/lib/taxonomy";
 
 const iconMap: Record<string, LucideIcon> = {
   Waves,
@@ -17,12 +18,15 @@ const iconMap: Record<string, LucideIcon> = {
 export default function SectorsGrid({
   comboServiceSlug = null,
   comboSectors = [],
+  sectors = sectorsFallback as readonly SectorCard[],
 }: {
   // When set (e.g. on the Scaffolding & Access page), a sector card links to
   // its sector×service sub-page if that combo exists; otherwise it falls back
   // to the main sector page.
   comboServiceSlug?: string | null;
   comboSectors?: string[];
+  // Sector cards from the CMS; defaults to the brand.ts roster.
+  sectors?: readonly SectorCard[];
 }) {
   return (
     <section className="py-24 bg-gradient-brand-light grid-pattern relative">
@@ -67,7 +71,9 @@ export default function SectorsGrid({
                     <Icon className="w-6 h-6 text-brand-accent" />
                   </div>
                   <h3 className="text-xl font-bold text-brand-900 mb-2">{s.name}</h3>
-                  <p className="text-sm text-brand-600 leading-relaxed mb-5">{s.description}</p>
+                  {s.description && (
+                    <p className="text-sm text-brand-600 leading-relaxed mb-5">{s.description}</p>
+                  )}
                   <span className="inline-flex items-center gap-1 text-brand-accent group-hover:text-brand-highlight transition-colors text-sm font-semibold">
                     {s.cta} <ArrowRight className="w-4 h-4" />
                   </span>

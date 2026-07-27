@@ -9,6 +9,7 @@ import {
   crafts as craftFallback,
   craftComboService,
 } from "@/lib/brand";
+import { getSectorSlugs, getSectorCards } from "@/lib/taxonomy";
 import SectorBody, { type SectorView } from "@/components/SectorBody";
 import ServiceBody, { type ServiceView } from "@/components/ServiceBody";
 import SectorsGrid from "@/components/SectorsGrid";
@@ -31,6 +32,13 @@ async function fetchSector(slug: string): Promise<SectorView | null> {
       .single()
   );
   if (db) return db;
+
+  // The DB is the source of truth once the sectors table is populated; only
+  // fall back to brand.ts when it's empty (fresh project). This makes deleting
+  // a sector in the CMS actually 404 its page instead of silently reverting to
+  // the hardcoded copy.
+  const slugs = await getSectorSlugs();
+  if (slugs.length) return null;
 
   const fb = sectorFallback.find((s) => s.slug === slug);
   if (!fb) return null;
@@ -116,11 +124,16 @@ export async function generateStaticParams() {
     ),
   ]);
 
+  // Sectors are DB-authoritative: prebuild the DB set (falling back to brand.ts
+  // only when the table is empty) so a deleted sector isn't pre-rendered.
+  const sectorSlugs = dbSectors.length
+    ? dbSectors.map((s) => s.slug)
+    : sectorFallback.map((s) => s.slug);
+
   const slugs = new Set<string>([
-    ...sectorFallback.map((s) => s.slug),
+    ...sectorSlugs,
     ...serviceFallback.map((s) => s.slug),
     ...craftFallback.map((s) => s.slug),
-    ...dbSectors.map((s) => s.slug),
     ...dbServices.map((s) => s.slug),
     ...dbCrafts.map((s) => s.slug),
   ]);
@@ -275,7 +288,11 @@ export default async function FlatPage({
           backLabel="Energy Services"
         />
         <ServiceBody service={craft} />
-        <SectorsGrid comboServiceSlug={comboServiceSlug} comboSectors={comboSectors} />
+        <SectorsGrid
+          comboServiceSlug={comboServiceSlug}
+          comboSectors={comboSectors}
+          sectors={await getSectorCards()}
+        />
         <CTASection />
       </article>
     );
