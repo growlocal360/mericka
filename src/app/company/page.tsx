@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import { Shield, Award, Users } from "lucide-react";
 import { brand } from "@/lib/brand";
 import { safeList } from "@/lib/supabase/safe";
@@ -48,32 +47,33 @@ export default async function CompanyPage() {
       <div className="pt-16 pb-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <header className="max-w-3xl mb-16">
-          <p className="text-lg text-brand-600 leading-relaxed">
-            Mericka Group is a nationwide{" "}
-            <Link href="/scaffolding" className="text-brand-accent underline hover:text-brand-highlight">
-              scaffolding
-            </Link>
-            ,{" "}
-            <Link href="/industrial-coatings" className="text-brand-accent underline hover:text-brand-highlight">
-              painting
-            </Link>
-            ,{" "}
-            <Link href="/insulation" className="text-brand-accent underline hover:text-brand-highlight">
-              insulation
-            </Link>
-            , and{" "}
-            <Link href="/fireproofing" className="text-brand-accent underline hover:text-brand-highlight">
-              fireproofing
-            </Link>{" "}
-            contractor built to own the soft craft scope on large-scale
-            industrial and energy projects. Headquartered in Humble, Texas, the firm
-            serves refining, midstream, chemical, power generation, and advanced
-            technology facilities across new construction, nested maintenance,
-            turnarounds, and outages — pairing a multi-skilled craft workforce with
-            disciplined cost management and data-driven reporting that brings clear
-            accountability to a scope often left as the least-controlled line on a
-            project budget.
-          </p>
+          <h2 className="text-3xl sm:text-4xl font-bold text-brand-900">Our Commitment</h2>
+          <div className="mt-6 space-y-5 text-lg text-brand-600 leading-relaxed">
+            <p>
+              Mericka Group is a leading industrial specialty contractor dedicated to
+              delivering safe, reliable, and high-quality solutions for some of the
+              nation&apos;s most demanding industrial projects. Since our founding, we
+              have built our reputation on integrity, accountability, skilled
+              craftsmanship, and a commitment to exceeding our clients&apos;
+              expectations.
+            </p>
+            <p>
+              Our experienced leadership team brings decades of industrial expertise
+              across construction, maintenance, turnarounds, shutdowns, capital
+              projects, and specialty industrial services. By combining self-performed
+              capabilities with disciplined project management and a highly trained
+              workforce, we help clients improve productivity, reduce risk, protect
+              critical assets, and complete projects safely, efficiently, and on
+              schedule.
+            </p>
+            <p>
+              At Mericka Group, we believe lasting partnerships are built through
+              trust, communication, and consistent performance. Every project is
+              guided by our commitment to operational excellence, continuous
+              improvement, and delivering value for our clients, employees, and the
+              communities we serve.
+            </p>
+          </div>
         </header>
 
         <div className="grid md:grid-cols-3 gap-6 mb-24">
