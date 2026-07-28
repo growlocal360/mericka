@@ -1,3 +1,8 @@
+-- !! ALREADY RUN — DO NOT RE-RUN !!
+-- These 10 projects had already been created by hand (with real locations)
+-- under different slugs, so this file added duplicate "Houston, TX" copies.
+-- The duplicates were removed by supabase/delete-duplicate-projects.sql.
+-- Re-running this file would recreate them. Kept for reference only.
 -- =========================================================================
 -- Mericka Group — seed 10 projects (+ 3 new clients they reference)
 --
