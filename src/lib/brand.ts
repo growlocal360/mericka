@@ -134,6 +134,18 @@ export const sectors = [
   { name: "Midstream Oil & Gas", slug: "midstream-oil-gas", icon: "Droplet",
     description: "Pipelines, gathering, and storage assets across the energy corridor.",
     cta: "Follow the pipeline" },
+  { name: "LNG", slug: "lng", icon: "Flame",
+    description: "Liquefaction trains, storage, and export terminals where cryogenic work leaves no room for error.",
+    cta: "Onto the terminal" },
+  { name: "Food & Beverage Manufacturing", slug: "food-beverage-manufacturing", icon: "UtensilsCrossed",
+    description: "Processing and packaging plants held to strict sanitation, uptime, and food-grade standards.",
+    cta: "Keep the line moving" },
+  { name: "Power Generation", slug: "power-generation", icon: "Zap",
+    description: "Generating stations and turbine halls kept online through every outage and upgrade.",
+    cta: "Keep the lights on" },
+  { name: "Government Sector", slug: "government-sector", icon: "Building2",
+    description: "Public facilities and infrastructure delivered to spec, on schedule, and to code.",
+    cta: "Built to spec" },
 ] as const;
 
 export const stats = [
