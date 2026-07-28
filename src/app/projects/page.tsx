@@ -62,7 +62,12 @@ export default async function ProjectsIndex() {
                     alt={p.title}
                     fill
                     sizes="(max-width: 768px) 100vw, 33vw"
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    unoptimized={p.featured_image.endsWith(".svg")}
+                    className={
+                      p.featured_image.endsWith(".svg")
+                        ? "object-contain p-10"
+                        : "object-cover transition-transform duration-500 group-hover:scale-105"
+                    }
                   />
                 )}
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-950 via-brand-900/40 to-transparent" />

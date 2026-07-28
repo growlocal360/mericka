@@ -68,7 +68,8 @@ export default async function ProjectDetail({ params }: { params: Promise<{ slug
             fill
             priority
             sizes="100vw"
-            className="object-cover"
+            unoptimized={data.featured_image.endsWith(".svg")}
+            className={data.featured_image.endsWith(".svg") ? "object-contain p-16 opacity-60" : "object-cover"}
           />
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-brand-950 via-brand-900/80 to-brand-900/40" />
