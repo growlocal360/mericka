@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Linkedin, Facebook, Instagram, Phone, Mail, MapPin } from "lucide-react";
+import { Linkedin, Facebook, Instagram, Phone, Mail, MapPin, ArrowRight } from "lucide-react";
 import { brand, crafts as craftsFallback } from "@/lib/brand";
 import type { NavItem } from "@/lib/taxonomy";
 import GetInTouchButton from "@/components/GetInTouchButton";
@@ -143,6 +143,13 @@ export default function Footer({
                   ))}
                 </span>
               </div>
+              <Link
+                href="/locations"
+                className="group inline-flex items-center gap-1.5 font-semibold text-brand-highlight transition-colors hover:text-white"
+              >
+                All Locations
+                <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+              </Link>
               <a
                 href={brand.phoneHref}
                 className="flex items-center gap-3 text-brand-200 transition-colors hover:text-white"

@@ -172,3 +172,12 @@ export const marqueeImages = [
 
 export const heroImage =
   "https://zeykdqgjsamlngfuimcp.supabase.co/storage/v1/object/public/uploads/hero_image_url/1781845766503-4iuga9.jpg";
+
+// Office locations. Fallback for the /locations page; the live list is managed
+// in the CMS (locations table).
+export const locations = [
+  { name: "Houston Office", address: "2323 S Houston Ave, Building 5", city: "Humble", state: "TX", zip: "77396", isHeadquarters: true },
+  { name: "Port Arthur Office", address: "401 Marcontell", city: "Port Arthur", state: "TX", zip: "77640", isHeadquarters: false },
+  { name: "Brownsville Office", address: "912 N. Indiana Ave.", city: "Brownsville", state: "TX", zip: "78521", isHeadquarters: false },
+  { name: "Louisiana Office", address: "2102 W. Kenny Dr.", city: "Gonzales", state: "LA", zip: "70737", isHeadquarters: false },
+] as const;
