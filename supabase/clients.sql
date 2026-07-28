@@ -35,10 +35,13 @@ insert into clients (name, logo_url, sector_slug, display_order, published) valu
   ('Hilcorp',                   '/clients/hilcorp.svg',               'midstream-oil-gas',  6,  true),
   ('Venture Global',            '/clients/venture-global.svg',        'midstream-oil-gas',  7,  true),
   ('Saulsbury Industries',      '/clients/saulsbury.svg',             'petrochemical',      8,  true),
-  ('Performance Contractors',   '/clients/performance-contractors.png','petrochemical',     9,  true),
+  ('Performance Contractors',   '/clients/performance-contractors-inc-logo.png','petrochemical', 9,  true),
   ('CCC Group',                 '/clients/ccc-group.jpg',             'petrochemical',      10, true),
   ('Kent',                      '/clients/kent.svg',                  'petrochemical',      11, true),
-  ('State of Washington',       '/clients/state-of-washington.svg',   'advanced-manufacturing',          12, true)
+  ('State of Washington',       '/clients/state-of-washington.svg',   'advanced-manufacturing',          12, true),
+  ('Crusoe',                    '/clients/crusoe-energy.svg',         'data-centers',                    13, true),
+  ('Yaya Foods',                '/clients/yaya-foods.webp',           'food-beverage-manufacturing',     14, true),
+  ('Quantum Industrial',        '/clients/quantum-industrial.png',    null,                              15, true)
 on conflict (name) do update set
   logo_url = excluded.logo_url,
   sector_slug = excluded.sector_slug,

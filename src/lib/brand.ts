@@ -100,10 +100,13 @@ export const clients = [
   { name: "Hilcorp", logo: "/clients/hilcorp.svg", sector: "midstream-oil-gas" },
   { name: "Venture Global", logo: "/clients/venture-global.svg", sector: "midstream-oil-gas" },
   { name: "Saulsbury Industries", logo: "/clients/saulsbury.svg", sector: "petrochemical" },
-  { name: "Performance Contractors", logo: "/clients/performance-contractors.png", sector: "petrochemical" },
+  { name: "Performance Contractors", logo: "/clients/performance-contractors-inc-logo.png", sector: "petrochemical" },
   { name: "CCC Group", logo: "/clients/ccc-group.jpg", sector: "petrochemical" },
   { name: "Kent", logo: "/clients/kent.svg", sector: "petrochemical" },
   { name: "State of Washington", logo: "/clients/state-of-washington.svg", sector: "advanced-manufacturing" },
+  { name: "Crusoe", logo: "/clients/crusoe-energy.svg", sector: "data-centers" },
+  { name: "Yaya Foods", logo: "/clients/yaya-foods.webp", sector: "food-beverage-manufacturing" },
+  { name: "Quantum Industrial", logo: "/clients/quantum-industrial.png", sector: "" },
 ] as const;
 
 // Which service (craft) pages have a sector-specific sub-service (combo) page,
