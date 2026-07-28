@@ -18,6 +18,7 @@ const companyLinks = [
   { href: "/careers", label: "Careers" },
   { href: "/news", label: "News" },
   { href: "/projects", label: "Projects" },
+  { href: "/locations", label: "Locations" },
   { href: "/contact", label: "Contact" },
 ];
 
