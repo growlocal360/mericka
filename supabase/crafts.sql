@@ -65,7 +65,7 @@ values
      'Coating and blasting robotics'
    ],
    'Mericka Group protects your assets with industrial coatings and linings applied to spec — from abrasive blasting and surface prep to high-performance coatings on tanks, pipe, and structural steel.',
-   '/images/paint-spray.jpg', 2, true),
+   '/images/industrial-painting-and-coating-mericka-group.jpg', 2, true),
 
   ('insulation', 'Insulation',
    'Thermal and personnel-protection insulation for industrial systems.',

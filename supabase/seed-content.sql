@@ -140,7 +140,7 @@ update sectors set
 where slug = 'petrochemical';
 
 update sectors set
-  hero_image_url = '/images/Paint-spray-tank-roof.jpg',
+  hero_image_url = '/images/industrial-painting-and-coating-mericka-group.jpg',
   intro_image_url = '/images/scaffolding.jpg',
   description = '{"type":"doc","content":[
     {"type":"paragraph","content":[{"type":"text","text":"The downstream oil and gas market encompasses the refining, distribution, and marketing of petroleum products, transforming crude oil and natural gas into fuels, lubricants, and petrochemicals that power industries and everyday life. This sector includes refineries, distribution networks, retail stations, and storage facilities that deliver finished products to end users."}]},

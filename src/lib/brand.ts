@@ -68,7 +68,7 @@ export const crafts = [
   {
     title: "Industrial Coatings & Painting",
     slug: "industrial-coatings",
-    img: "/images/paint-spray.jpg",
+    img: "/images/industrial-painting-and-coating-mericka-group.jpg",
     points: ["Blasting & surface prep", "Protective coatings", "Tank liners"],
     cta: "Fight corrosion",
   },
@@ -158,8 +158,7 @@ export const stats = [
 export const marqueeImages = [
   "/images/scaffolding.jpg",
   "/images/product-page-scaffolding-and-turnaround.jpg",
-  "/images/paint-spray.jpg",
-  "/images/Paint-spray-tank-roof.jpg",
+  "/images/industrial-painting-and-coating-mericka-group.jpg",
   "/images/pipes.jpg",
   "/images/tank-services.jpg",
   "/images/Fireproofing.jpg",
