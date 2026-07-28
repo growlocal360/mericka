@@ -76,6 +76,7 @@ async function fetchService(slug: string): Promise<ServiceView | null> {
     summary: null,
     description: null,
     hero_image_url: fb.img,
+    intro_image_url: null,
     phase: null,
   };
 }
@@ -91,7 +92,14 @@ async function fetchCraft(slug: string): Promise<ServiceView | null> {
       .eq("published", true)
       .single()
   );
-  if (db) return { ...db, phase: null };
+  if (db) {
+    // Separate lookup so a missing intro_image_url column (before its migration
+    // runs) can't error out and blank the whole service page.
+    const intro = await safeSingle<{ intro_image_url: string | null }>((sb) =>
+      sb.from("crafts").select("intro_image_url").eq("slug", slug).eq("published", true).single()
+    );
+    return { ...db, intro_image_url: intro?.intro_image_url ?? null, phase: null };
+  }
 
   const fb = craftFallback.find((c) => c.slug === slug);
   if (!fb) return null;
@@ -105,6 +113,7 @@ async function fetchCraft(slug: string): Promise<ServiceView | null> {
     summary: null,
     description: null,
     hero_image_url: fb.img,
+    intro_image_url: null,
     phase: null,
   };
 }

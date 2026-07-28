@@ -73,6 +73,7 @@ export const ENTITIES: Record<EntityKey, EntityConfig> = {
       { name: "summary", label: "What We Do (summary)", kind: "textarea" },
       { name: "icon", label: "Lucide Icon Name", kind: "text" },
       { name: "hero_image_url", label: "Hero Image", kind: "image" },
+      { name: "intro_image_url", label: "Secondary Image (What We Do section)", kind: "image" },
       { name: "description", label: "Description (optional, extra detail)", kind: "rich" },
       { name: "display_order", label: "Display Order", kind: "number" },
       { name: "published", label: "Published", kind: "boolean" },

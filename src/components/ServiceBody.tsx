@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Check } from "lucide-react";
@@ -16,6 +17,7 @@ export type ServiceView = {
   summary: string | null;
   description: unknown;
   hero_image_url: string | null;
+  intro_image_url: string | null;
   phase: string | null;
 };
 
@@ -105,23 +107,53 @@ export default function ServiceBody({ service }: { service: ServiceView }) {
 
       <MerickanWay />
 
-      {/* What We Do — closing summary */}
+      {/* What We Do — closing summary, with optional secondary image */}
       {(service.summary || service.description != null) && (
         <section className="py-20 sm:py-28 bg-white">
-          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div {...fadeUp} transition={{ duration: 0.6 }}>
-              <span className="text-sm tracking-wider font-semibold text-brand-accent uppercase">
-                What We Do
-              </span>
-              {service.summary && (
-                <p className="mt-4 text-xl text-brand-700 leading-relaxed">{service.summary}</p>
+          <div
+            className={`mx-auto px-4 sm:px-6 lg:px-8 ${
+              service.intro_image_url ? "max-w-7xl" : "max-w-3xl"
+            }`}
+          >
+            <div
+              className={
+                service.intro_image_url
+                  ? "grid lg:grid-cols-2 gap-12 lg:gap-16 items-center"
+                  : ""
+              }
+            >
+              <motion.div {...fadeUp} transition={{ duration: 0.6 }}>
+                <span className="text-sm tracking-wider font-semibold text-brand-accent uppercase">
+                  What We Do
+                </span>
+                {service.summary && (
+                  <p className="mt-4 text-xl text-brand-700 leading-relaxed">{service.summary}</p>
+                )}
+                {service.description != null && (
+                  <div className="mt-6">
+                    <ArticleContent content={service.description as never} />
+                  </div>
+                )}
+              </motion.div>
+
+              {service.intro_image_url && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.96 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.6 }}
+                  className="relative h-80 lg:h-[28rem] rounded-2xl overflow-hidden bg-brand-100"
+                >
+                  <Image
+                    src={service.intro_image_url}
+                    alt={service.name}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    className="object-cover"
+                  />
+                </motion.div>
               )}
-              {service.description != null && (
-                <div className="mt-6">
-                  <ArticleContent content={service.description as never} />
-                </div>
-              )}
-            </motion.div>
+            </div>
           </div>
         </section>
       )}

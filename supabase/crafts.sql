@@ -14,6 +14,7 @@ create table if not exists crafts (
   summary text,
   description jsonb,
   hero_image_url text,
+  intro_image_url text,
   icon text,
   display_order integer default 0,
   published boolean default false,
