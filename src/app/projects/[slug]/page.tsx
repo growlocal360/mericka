@@ -4,6 +4,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import ArticleContent from "@/components/editor/ArticleContent";
 import { safeSingle, safeList } from "@/lib/supabase/safe";
+import { getClientLogo } from "@/lib/clients";
 
 type Project = {
   id: string;
@@ -58,6 +59,8 @@ export default async function ProjectDetail({ params }: { params: Promise<{ slug
       .order("display_order", { ascending: true })
   );
 
+  const clientLogo = await getClientLogo(data.client);
+
   return (
     <article>
       <header className="relative h-[60vh] min-h-[420px] bg-brand-900 flex items-end overflow-hidden">
@@ -77,6 +80,19 @@ export default async function ProjectDetail({ params }: { params: Promise<{ slug
           <Link href="/projects" className="text-brand-300 hover:text-brand-100 text-sm font-medium">
             ← All Projects
           </Link>
+          {clientLogo && (
+            <div className="mt-6 inline-flex items-center rounded-xl bg-white/95 px-5 py-3 shadow-lg">
+              <div className="relative h-9 w-32">
+                <Image
+                  src={clientLogo}
+                  alt={data.client ?? ""}
+                  fill
+                  unoptimized
+                  className="object-contain object-left"
+                />
+              </div>
+            </div>
+          )}
           <h1 className="mt-4 text-5xl sm:text-6xl font-bold text-white max-w-4xl">{data.title}</h1>
           <p className="mt-4 text-lg text-brand-200">
             {[data.client, data.location].filter(Boolean).join(" · ")}
