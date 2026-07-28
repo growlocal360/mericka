@@ -1,22 +1,26 @@
 import { safeList } from "@/lib/supabase/safe";
-import { sectors as sectorsFallback, crafts as craftsFallback } from "@/lib/brand";
+import { sectors as sectorsFallback, crafts as craftsFallback, sectorCategories } from "@/lib/brand";
 
 export type NavItem = { slug: string; name: string };
-export type SectorCard = { slug: string; name: string; icon: string; description: string; cta: string };
-export type NavData = { sectors: NavItem[]; services: NavItem[] };
+export type NavGroup = { category: string; items: NavItem[] };
+export type SectorCard = { slug: string; name: string; icon: string; description: string; cta: string; category: string | null };
+export type NavData = { sectors: NavGroup[]; services: NavItem[] };
 
 // A usable URL slug: lowercase, digits, single hyphens. Guards the menu/grid
 // against rows where a title or sentence was pasted into the slug field.
 const isValidSlug = (s: string | null | undefined): s is string =>
   !!s && /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(s);
 
+// Curated ordering for the nav: sectors sort by their position in brand.ts.
+const sectorOrder = new Map<string, number>(sectorsFallback.map((s, i) => [s.slug, i]));
+
 /**
  * Published sectors for the homepage / sectors-page grid.
  *
  * The database is authoritative: add a sector and it appears; delete one and
  * it disappears. brand.ts supplies curated card copy (short description, CTA,
- * icon) per slug, and is the whole list only when the sectors table is empty
- * (fresh project) so the site still renders during bring-up.
+ * icon, menu category) per slug, and is the whole list only when the sectors
+ * table is empty (fresh project) so the site still renders during bring-up.
  */
 export async function getSectorCards(): Promise<SectorCard[]> {
   const db = await safeList<{ slug: string; name: string; icon: string | null }>((sb) =>
@@ -35,6 +39,7 @@ export async function getSectorCards(): Promise<SectorCard[]> {
         icon: s.icon || fb?.icon || "Factory",
         description: fb?.description ?? "",
         cta: fb?.cta ?? "Learn more",
+        category: fb?.category ?? null,
       };
     });
   }
@@ -44,6 +49,7 @@ export async function getSectorCards(): Promise<SectorCard[]> {
     icon: s.icon,
     description: s.description,
     cta: s.cta,
+    category: s.category,
   }));
 }
 
@@ -72,11 +78,30 @@ export async function getSectorSlugs(): Promise<string[]> {
   return db.map((s) => s.slug);
 }
 
-/** Sector + service lists for the header/footer navigation. */
+// Group sector cards into the ordered menu categories; anything without a known
+// category falls into a trailing "Other" group so it's never dropped.
+function groupSectors(cards: SectorCard[]): NavGroup[] {
+  const byOrder = (a: NavItem, b: NavItem) =>
+    (sectorOrder.get(a.slug) ?? 999) - (sectorOrder.get(b.slug) ?? 999);
+  const groups: NavGroup[] = [];
+  for (const category of sectorCategories) {
+    const items = cards
+      .filter((c) => c.category === category)
+      .map((c) => ({ slug: c.slug, name: c.name }))
+      .sort(byOrder);
+    if (items.length) groups.push({ category, items });
+  }
+  const known = new Set<string>(sectorCategories);
+  const rest = cards
+    .filter((c) => !c.category || !known.has(c.category))
+    .map((c) => ({ slug: c.slug, name: c.name }))
+    .sort(byOrder);
+  if (rest.length) groups.push({ category: "Other", items: rest });
+  return groups;
+}
+
+/** Sector (grouped) + service lists for the header/footer navigation. */
 export async function getNavData(): Promise<NavData> {
   const [cards, services] = await Promise.all([getSectorCards(), getServiceItems()]);
-  return {
-    sectors: cards.map((s) => ({ slug: s.slug, name: s.name })),
-    services,
-  };
+  return { sectors: groupSectors(cards), services };
 }

@@ -115,37 +115,51 @@ export const craftComboService: Record<string, string> = {
   scaffolding: "scaffolding-and-access-solutions",
 };
 
+// Sector menu categories, in display order. Each sector's `category` must
+// match one of these; sectors with an unknown/blank category fall under "Other".
+export const sectorCategories = [
+  "Energy",
+  "Advanced Industries",
+  "Infrastructure & Government",
+  "Manufacturing",
+] as const;
+
+// Order within each category follows this array order.
 export const sectors = [
-  { name: "Downstream Oil & Gas", slug: "downstream-oil-gas", icon: "Waves",
+  // --- Energy ---
+  { name: "Downstream Oil & Gas", slug: "downstream-oil-gas", icon: "Waves", category: "Energy",
     description: "Refining, processing, and product distribution facilities operating around the clock.",
     cta: "Keep the units running" },
-  { name: "Petrochemical", slug: "petrochemical", icon: "FlaskConical",
-    description: "Complex chemical plants where safety, precision, and uptime are non-negotiable.",
-    cta: "Inside the plant" },
-  { name: "Advanced Manufacturing", slug: "advanced-manufacturing", icon: "Factory",
-    description: "Cleanroom-adjacent and high-spec environments for advanced manufacturing.",
-    cta: "Where precision counts" },
-  { name: "Data Centers", slug: "data-centers", icon: "Cpu",
-    description: "Mission-critical hyperscale and colocation builds with no margin for delay.",
-    cta: "How we keep pace" },
-  { name: "Semiconductor", slug: "semiconductor", icon: "Microchip",
-    description: "Fab construction and outage support with cleanroom protocol awareness.",
-    cta: "Step inside the fab" },
-  { name: "Midstream Oil & Gas", slug: "midstream-oil-gas", icon: "Droplet",
+  { name: "Midstream Oil & Gas", slug: "midstream-oil-gas", icon: "Droplet", category: "Energy",
     description: "Pipelines, gathering, and storage assets across the energy corridor.",
     cta: "Follow the pipeline" },
-  { name: "LNG", slug: "lng", icon: "Flame",
-    description: "Liquefaction trains, storage, and export terminals where cryogenic work leaves no room for error.",
-    cta: "Onto the terminal" },
-  { name: "Food & Beverage Manufacturing", slug: "food-beverage-manufacturing", icon: "UtensilsCrossed",
-    description: "Processing and packaging plants held to strict sanitation, uptime, and food-grade standards.",
-    cta: "Keep the line moving" },
-  { name: "Power Generation", slug: "power-generation", icon: "Zap",
+  { name: "Petrochemical", slug: "petrochemical", icon: "FlaskConical", category: "Energy",
+    description: "Complex chemical plants where safety, precision, and uptime are non-negotiable.",
+    cta: "Inside the plant" },
+  { name: "Power Generation", slug: "power-generation", icon: "Zap", category: "Energy",
     description: "Generating stations and turbine halls kept online through every outage and upgrade.",
     cta: "Keep the lights on" },
-  { name: "Government Sector", slug: "government-sector", icon: "Building2",
+  { name: "LNG", slug: "lng", icon: "Flame", category: "Energy",
+    description: "Liquefaction trains, storage, and export terminals where cryogenic work leaves no room for error.",
+    cta: "Onto the terminal" },
+  // --- Advanced Industries ---
+  { name: "Advanced Manufacturing", slug: "advanced-manufacturing", icon: "Factory", category: "Advanced Industries",
+    description: "Cleanroom-adjacent and high-spec environments for advanced manufacturing.",
+    cta: "Where precision counts" },
+  { name: "Semiconductor", slug: "semiconductor", icon: "Microchip", category: "Advanced Industries",
+    description: "Fab construction and outage support with cleanroom protocol awareness.",
+    cta: "Step inside the fab" },
+  { name: "Data Centers", slug: "data-centers", icon: "Cpu", category: "Advanced Industries",
+    description: "Mission-critical hyperscale and colocation builds with no margin for delay.",
+    cta: "How we keep pace" },
+  // --- Infrastructure & Government ---
+  { name: "Government Sector", slug: "government-sector", icon: "Building2", category: "Infrastructure & Government",
     description: "Public facilities and infrastructure delivered to spec, on schedule, and to code.",
     cta: "Built to spec" },
+  // --- Manufacturing ---
+  { name: "Food & Beverage Manufacturing", slug: "food-beverage-manufacturing", icon: "UtensilsCrossed", category: "Manufacturing",
+    description: "Processing and packaging plants held to strict sanitation, uptime, and food-grade standards.",
+    cta: "Keep the line moving" },
 ] as const;
 
 export const stats = [

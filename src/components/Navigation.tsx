@@ -6,8 +6,8 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Phone, ChevronDown } from "lucide-react";
 import clsx from "clsx";
-import { brand, sectors as sectorsFallback, crafts as craftsFallback } from "@/lib/brand";
-import type { NavItem } from "@/lib/taxonomy";
+import { brand, crafts as craftsFallback } from "@/lib/brand";
+import type { NavItem, NavGroup } from "@/lib/taxonomy";
 import GetInTouchButton from "@/components/GetInTouchButton";
 
 type DropdownKey = "services" | "capabilities" | "sectors" | "company" | null;
@@ -23,10 +23,10 @@ const companyLinks = [
 ];
 
 export default function Navigation({
-  sectors = sectorsFallback.map((s) => ({ slug: s.slug, name: s.name })),
+  sectors,
   services = craftsFallback.map((c) => ({ slug: c.slug, name: c.title })),
 }: {
-  sectors?: NavItem[];
+  sectors: NavGroup[];
   services?: NavItem[];
 }) {
   const [scrolled, setScrolled] = useState(false);
@@ -74,7 +74,7 @@ export default function Navigation({
             onEnter={() => setOpen("sectors")}
             onLeave={() => setOpen(null)}
             href="/sectors"
-            items={sectors.map((s) => ({ href: `/${s.slug}`, label: s.name }))}
+            groups={sectors}
           />
           <DropdownLink
             label="Company"
@@ -128,7 +128,7 @@ export default function Navigation({
               className="p-6 flex flex-col gap-1"
             >
               <MobileGroup label="Services" href="/energy-services" items={services.map((s) => ({ href: `/${s.slug}`, label: s.name }))} onClick={() => setMobileOpen(false)} />
-              <MobileGroup label="Sectors" href="/sectors" items={sectors.map((s) => ({ href: `/${s.slug}`, label: s.name }))} onClick={() => setMobileOpen(false)} />
+              <MobileGroup label="Sectors" href="/sectors" groups={sectors} onClick={() => setMobileOpen(false)} />
               <MobileGroup label="Company" href="/company" items={companyLinks} onClick={() => setMobileOpen(false)} />
               <a href={brand.phoneHref} className="mt-6 flex items-center gap-2 text-brand-200 hover:text-brand-highlight transition-colors py-3">
                 <Phone className="w-5 h-5" /> {brand.phone}
@@ -146,13 +146,15 @@ function DropdownLink({
   label,
   href,
   items,
+  groups,
   isOpen,
   onEnter,
   onLeave,
 }: {
   label: string;
   href: string;
-  items: { href: string; label: string }[];
+  items?: { href: string; label: string }[];
+  groups?: NavGroup[];
   isOpen: boolean;
   onEnter: () => void;
   onLeave: () => void;
@@ -173,18 +175,35 @@ function DropdownLink({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.18 }}
-            className="absolute left-0 top-full pt-3 w-72"
+            className={clsx("absolute left-0 top-full pt-3", groups ? "w-80" : "w-72")}
           >
             <div className="bg-brand-900 border border-brand-800 shadow-xl rounded-xl p-2 overflow-hidden">
-              {items.map((it) => (
-                <Link
-                  key={it.href}
-                  href={it.href}
-                  className="block px-4 py-2.5 text-brand-200 hover:bg-brand-800 hover:text-white rounded-lg transition-colors"
-                >
-                  {it.label}
-                </Link>
-              ))}
+              {groups
+                ? groups.map((g) => (
+                    <div key={g.category} className="py-1">
+                      <p className="px-4 pt-2 pb-1 text-[11px] font-semibold uppercase tracking-wider text-brand-400">
+                        {g.category}
+                      </p>
+                      {g.items.map((it) => (
+                        <Link
+                          key={it.slug}
+                          href={`/${it.slug}`}
+                          className="block px-4 py-2 text-brand-200 hover:bg-brand-800 hover:text-white rounded-lg transition-colors"
+                        >
+                          {it.name}
+                        </Link>
+                      ))}
+                    </div>
+                  ))
+                : items?.map((it) => (
+                    <Link
+                      key={it.href}
+                      href={it.href}
+                      className="block px-4 py-2.5 text-brand-200 hover:bg-brand-800 hover:text-white rounded-lg transition-colors"
+                    >
+                      {it.label}
+                    </Link>
+                  ))}
             </div>
           </motion.div>
         )}
@@ -197,11 +216,13 @@ function MobileGroup({
   label,
   href,
   items,
+  groups,
   onClick,
 }: {
   label: string;
   href: string;
-  items: { href: string; label: string }[];
+  items?: { href: string; label: string }[];
+  groups?: NavGroup[];
   onClick: () => void;
 }) {
   const [open, setOpen] = useState(false);
@@ -227,16 +248,34 @@ function MobileGroup({
               <Link href={href} onClick={onClick} className="py-2 text-brand-accent">
                 View all {label}
               </Link>
-              {items.map((it) => (
-                <Link
-                  key={it.href}
-                  href={it.href}
-                  onClick={onClick}
-                  className="py-2 text-brand-300 hover:text-white"
-                >
-                  {it.label}
-                </Link>
-              ))}
+              {groups
+                ? groups.map((g) => (
+                    <div key={g.category} className="mt-1">
+                      <p className="pt-2 pb-1 text-xs font-semibold uppercase tracking-wider text-brand-500">
+                        {g.category}
+                      </p>
+                      {g.items.map((it) => (
+                        <Link
+                          key={it.slug}
+                          href={`/${it.slug}`}
+                          onClick={onClick}
+                          className="block py-2 text-brand-300 hover:text-white"
+                        >
+                          {it.name}
+                        </Link>
+                      ))}
+                    </div>
+                  ))
+                : items?.map((it) => (
+                    <Link
+                      key={it.href}
+                      href={it.href}
+                      onClick={onClick}
+                      className="py-2 text-brand-300 hover:text-white"
+                    >
+                      {it.label}
+                    </Link>
+                  ))}
             </div>
           </motion.div>
         )}
