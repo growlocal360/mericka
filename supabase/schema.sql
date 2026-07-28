@@ -87,6 +87,7 @@ create table projects (
   excerpt text,
   description jsonb,
   featured_image text,
+  gallery_images text[] default '{}',
   services_used text[] default '{}',
   sectors text[] default '{}',
   featured boolean default false,

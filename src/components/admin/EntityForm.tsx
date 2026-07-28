@@ -1,10 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
 import slugify from "slugify";
-import { Loader2 } from "lucide-react";
+import { Loader2, X } from "lucide-react";
 import type { JSONContent } from "@tiptap/react";
 import type { EntityConfig, FieldDef } from "@/lib/admin/entities";
 import ImageUpload from "@/components/admin/ImageUpload";
@@ -235,6 +236,9 @@ function FieldRow({
       />
     );
   }
+  if (field.kind === "images") {
+    return <MultiImageField field={field} value={value} onChange={onChange} />;
+  }
   if (field.kind === "date") {
     const v = typeof value === "string" ? value.slice(0, 10) : "";
     return (
@@ -315,6 +319,62 @@ function TagsField({
       <p className="mt-1.5 text-xs text-brand-500">
         One item per line. Commas inside a line are kept as-is.
       </p>
+    </div>
+  );
+}
+
+// A list of uploaded images stored as a string[] of URLs. Reuses ImageUpload
+// as the "add another" control and shows removable thumbnails for each.
+function MultiImageField({
+  field,
+  value,
+  onChange,
+}: {
+  field: FieldDef;
+  value: Value;
+  onChange: (v: Value) => void;
+}) {
+  const images: string[] = Array.isArray(value)
+    ? value.filter((v): v is string => typeof v === "string")
+    : [];
+
+  return (
+    <div>
+      <label className="block text-sm font-semibold text-brand-700 mb-2">{field.label}</label>
+      {images.length > 0 && (
+        <div className="mb-3 flex flex-wrap gap-3">
+          {images.map((url, i) => (
+            <div key={`${url}-${i}`} className="relative">
+              <div className="relative h-24 w-32 overflow-hidden rounded-lg border border-brand-200 bg-brand-50">
+                <Image
+                  src={url}
+                  alt=""
+                  fill
+                  sizes="128px"
+                  unoptimized={url.endsWith(".svg")}
+                  className="object-cover"
+                />
+              </div>
+              <button
+                type="button"
+                onClick={() => onChange(images.filter((_, idx) => idx !== i))}
+                className="absolute -top-2 -right-2 rounded-full bg-brand-highlight p-1 text-white shadow"
+                aria-label="Remove image"
+              >
+                <X className="h-3.5 w-3.5" />
+              </button>
+            </div>
+          ))}
+        </div>
+      )}
+      <ImageUpload
+        label="Add image"
+        value={null}
+        onChange={(url) => {
+          if (url) onChange([...images, url]);
+        }}
+        folder={field.name}
+      />
     </div>
   );
 }

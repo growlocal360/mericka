@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import ArticleContent from "@/components/editor/ArticleContent";
-import { safeSingle, safeList } from "@/lib/supabase/safe";
+import { safeSingle } from "@/lib/supabase/safe";
 import { getClientLogo } from "@/lib/clients";
 
 type Project = {
@@ -15,15 +15,10 @@ type Project = {
   excerpt: string | null;
   description: unknown;
   featured_image: string | null;
+  gallery_images: string[] | null;
   services_used: string[] | null;
   sectors: string[] | null;
   completed_at: string | null;
-};
-
-type ProjectImage = {
-  id: string;
-  image_url: string;
-  caption: string | null;
 };
 
 export async function generateMetadata({
@@ -44,20 +39,13 @@ export default async function ProjectDetail({ params }: { params: Promise<{ slug
   const data = await safeSingle<Project>((sb) =>
     sb.from("projects")
       .select(
-        "id, slug, title, client, location, excerpt, description, featured_image, services_used, sectors, completed_at"
+        "id, slug, title, client, location, excerpt, description, featured_image, gallery_images, services_used, sectors, completed_at"
       )
       .eq("slug", slug)
       .eq("published", true)
       .single()
   );
   if (!data) notFound();
-
-  const images = await safeList<ProjectImage>((sb) =>
-    sb.from("project_images")
-      .select("id, image_url, caption")
-      .eq("project_id", data.id)
-      .order("display_order", { ascending: true })
-  );
 
   const clientLogo = await getClientLogo(data.client);
 
@@ -91,11 +79,44 @@ export default async function ProjectDetail({ params }: { params: Promise<{ slug
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-3 gap-12 lg:gap-16">
           {/* Main content */}
           <div className="lg:col-span-2">
+            {data.featured_image && (
+              <div className="relative mb-10 aspect-video w-full overflow-hidden rounded-2xl bg-brand-100">
+                <Image
+                  src={data.featured_image}
+                  alt={data.title}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 66vw"
+                  unoptimized={data.featured_image.endsWith(".svg")}
+                  className={data.featured_image.endsWith(".svg") ? "object-contain p-10" : "object-cover"}
+                />
+              </div>
+            )}
             {data.excerpt && <p className="text-xl text-brand-700 leading-relaxed mb-8">{data.excerpt}</p>}
             {data.description != null ? (
               <ArticleContent content={data.description as never} />
             ) : (
               <p className="text-brand-600 italic">No detailed description yet.</p>
+            )}
+            {data.gallery_images && data.gallery_images.length > 0 && (
+              <div className="mt-12">
+                <h2 className="mb-4 text-xs uppercase tracking-wider font-semibold text-brand-500">
+                  Project Gallery
+                </h2>
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                  {data.gallery_images.map((url, i) => (
+                    <div key={`${url}-${i}`} className="relative aspect-square overflow-hidden rounded-xl bg-brand-100">
+                      <Image
+                        src={url}
+                        alt=""
+                        fill
+                        sizes="(max-width: 768px) 50vw, 22vw"
+                        unoptimized={url.endsWith(".svg")}
+                        className="object-cover"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
             )}
           </div>
 
@@ -141,23 +162,6 @@ export default async function ProjectDetail({ params }: { params: Promise<{ slug
           </aside>
         </div>
       </div>
-
-      {images.length > 0 && (
-        <div className="pb-24">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {images.map((img) => (
-              <figure key={img.id} className="rounded-xl overflow-hidden bg-brand-100">
-                <div className="relative h-64">
-                  <Image src={img.image_url} alt={img.caption ?? ""} fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover" />
-                </div>
-                {img.caption && (
-                  <figcaption className="p-3 text-sm text-brand-600">{img.caption}</figcaption>
-                )}
-              </figure>
-            ))}
-          </div>
-        </div>
-      )}
     </article>
   );
 }

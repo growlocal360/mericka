@@ -20,6 +20,7 @@ export type FieldKind =
   | "select"
   | "reference"
   | "multiselect"
+  | "images"
   | "tags"
   | "date";
 
@@ -174,6 +175,7 @@ export const ENTITIES: Record<EntityKey, EntityConfig> = {
       { name: "location", label: "Location", kind: "text" },
       { name: "excerpt", label: "Excerpt", kind: "textarea" },
       { name: "featured_image", label: "Featured Image", kind: "image" },
+      { name: "gallery_images", label: "Supporting / Secondary Images", kind: "images", arrayValues: true },
       { name: "services_used", label: "Services Used", kind: "multiselect", refEntity: "services", refValueField: "name", refLabelField: "name", arrayValues: true },
       { name: "sectors", label: "Sectors", kind: "multiselect", refEntity: "sectors", refValueField: "name", refLabelField: "name", arrayValues: true },
       { name: "description", label: "Description", kind: "rich" },
