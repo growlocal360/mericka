@@ -80,19 +80,6 @@ export default async function ProjectDetail({ params }: { params: Promise<{ slug
           <Link href="/projects" className="text-brand-300 hover:text-brand-100 text-sm font-medium">
             ← All Projects
           </Link>
-          {clientLogo && (
-            <div className="mt-6 inline-flex items-center rounded-xl bg-white/95 px-5 py-3 shadow-lg">
-              <div className="relative h-9 w-32">
-                <Image
-                  src={clientLogo}
-                  alt={data.client ?? ""}
-                  fill
-                  unoptimized
-                  className="object-contain object-left"
-                />
-              </div>
-            </div>
-          )}
           <h1 className="mt-4 text-5xl sm:text-6xl font-bold text-white max-w-4xl">{data.title}</h1>
           <p className="mt-4 text-lg text-brand-200">
             {[data.client, data.location].filter(Boolean).join(" · ")}
@@ -100,13 +87,59 @@ export default async function ProjectDetail({ params }: { params: Promise<{ slug
         </div>
       </header>
 
-      <div className="py-20 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        {data.excerpt && <p className="text-xl text-brand-700 leading-relaxed mb-8">{data.excerpt}</p>}
-        {data.description != null ? (
-          <ArticleContent content={data.description as never} />
-        ) : (
-          <p className="text-brand-600 italic">No detailed description yet.</p>
-        )}
+      <div className="py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-3 gap-12 lg:gap-16">
+          {/* Main content */}
+          <div className="lg:col-span-2">
+            {data.excerpt && <p className="text-xl text-brand-700 leading-relaxed mb-8">{data.excerpt}</p>}
+            {data.description != null ? (
+              <ArticleContent content={data.description as never} />
+            ) : (
+              <p className="text-brand-600 italic">No detailed description yet.</p>
+            )}
+          </div>
+
+          {/* Sidebar: client logo + project metadata */}
+          <aside className="lg:col-span-1 self-start space-y-8 lg:sticky lg:top-28">
+            {clientLogo && (
+              <div>
+                <h2 className="text-xs uppercase tracking-wider font-semibold text-brand-500 mb-3">Client</h2>
+                <div className="flex h-28 items-center justify-center rounded-2xl border border-brand-100 bg-white p-6">
+                  <div className="relative h-14 w-full">
+                    <Image src={clientLogo} alt={data.client ?? ""} fill unoptimized className="object-contain" />
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {data.sectors && data.sectors.length > 0 && (
+              <div>
+                <h2 className="text-xs uppercase tracking-wider font-semibold text-brand-500 mb-3">Sectors</h2>
+                <ul className="flex flex-wrap gap-2">
+                  {data.sectors.map((s) => (
+                    <li key={s} className="rounded-full border border-brand-100 bg-brand-50 px-3 py-1 text-sm text-brand-700">
+                      {s}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {data.services_used && data.services_used.length > 0 && (
+              <div>
+                <h2 className="text-xs uppercase tracking-wider font-semibold text-brand-500 mb-3">Services Used</h2>
+                <ul className="space-y-2">
+                  {data.services_used.map((s) => (
+                    <li key={s} className="flex items-center gap-2.5 text-sm text-brand-700">
+                      <span className="h-1.5 w-1.5 rounded-full bg-brand-highlight" />
+                      {s}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </aside>
+        </div>
       </div>
 
       {images.length > 0 && (

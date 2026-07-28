@@ -219,6 +219,9 @@ function FieldRow({
   if (field.kind === "reference") {
     return <ReferenceField field={field} value={value} onChange={onChange} labelEl={labelEl} />;
   }
+  if (field.kind === "multiselect") {
+    return <MultiSelectField field={field} value={value} onChange={onChange} labelEl={labelEl} />;
+  }
   if (field.kind === "tags") {
     return <TagsField field={field} value={value} onChange={onChange} labelEl={labelEl} />;
   }
@@ -312,6 +315,88 @@ function TagsField({
       <p className="mt-1.5 text-xs text-brand-500">
         One item per line. Commas inside a line are kept as-is.
       </p>
+    </div>
+  );
+}
+
+// Checkbox list whose options are loaded live from another table, storing the
+// chosen values as a string[] (e.g. a Project's Services Used / Sectors pull
+// their options from the services / sectors tables).
+function MultiSelectField({
+  field,
+  value,
+  onChange,
+  labelEl,
+}: {
+  field: FieldDef;
+  value: Value;
+  onChange: (v: Value) => void;
+  labelEl: React.ReactNode;
+}) {
+  const [options, setOptions] = useState<{ value: string; label: string }[]>([]);
+
+  useEffect(() => {
+    if (!field.refEntity) return;
+    let active = true;
+    const vf = field.refValueField ?? "name";
+    const lf = field.refLabelField ?? "name";
+    fetch(`/api/admin/${field.refEntity}`)
+      .then((r) => (r.ok ? r.json() : []))
+      .then((rows: Record<string, unknown>[]) => {
+        if (!active || !Array.isArray(rows)) return;
+        setOptions(
+          rows
+            .map((r) => ({ value: String(r[vf] ?? ""), label: String(r[lf] ?? "") }))
+            .filter((o) => o.value)
+        );
+      })
+      .catch(() => {});
+    return () => {
+      active = false;
+    };
+  }, [field.refEntity, field.refValueField, field.refLabelField]);
+
+  const selected: string[] = Array.isArray(value)
+    ? value.filter((v): v is string => typeof v === "string")
+    : [];
+  const optionValues = new Set(options.map((o) => o.value));
+  // Preserve any saved values that aren't (or are no longer) in the list.
+  const extras = selected.filter((v) => !optionValues.has(v));
+
+  function toggle(v: string) {
+    onChange(selected.includes(v) ? selected.filter((x) => x !== v) : [...selected, v]);
+  }
+
+  return (
+    <div>
+      {labelEl}
+      <div className="max-w-md max-h-56 overflow-y-auto rounded-lg border border-brand-200 p-3 space-y-1.5">
+        {options.map((o) => (
+          <label key={o.value} className="flex items-center gap-2.5 text-sm text-brand-700 cursor-pointer">
+            <input
+              type="checkbox"
+              checked={selected.includes(o.value)}
+              onChange={() => toggle(o.value)}
+              className="w-4 h-4 accent-brand-highlight"
+            />
+            {o.label}
+          </label>
+        ))}
+        {extras.map((v) => (
+          <label key={v} className="flex items-center gap-2.5 text-sm text-brand-500 cursor-pointer">
+            <input
+              type="checkbox"
+              checked
+              onChange={() => toggle(v)}
+              className="w-4 h-4 accent-brand-highlight"
+            />
+            {v} <span className="text-xs">(not in list)</span>
+          </label>
+        ))}
+        {options.length === 0 && extras.length === 0 && (
+          <p className="text-sm text-brand-400">No options found.</p>
+        )}
+      </div>
     </div>
   );
 }
