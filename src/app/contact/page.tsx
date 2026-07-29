@@ -1,4 +1,4 @@
-import ContactForm from "@/components/ContactForm";
+import Script from "next/script";
 import { brand } from "@/lib/brand";
 import { Phone, Mail, MapPin } from "lucide-react";
 
@@ -46,7 +46,28 @@ export default function ContactPage() {
           </div>
         </div>
 
-        <ContactForm />
+        <div>
+          {/* HighLevel (LeadConnector) embedded form — submissions go straight
+              into HighLevel. form_embed.js auto-resizes the iframe. */}
+          <iframe
+            src="https://link.goleadflow.com/widget/form/jUF47jDJKHIMQIK6hQvG"
+            style={{ width: "100%", minHeight: "652px", border: "none", borderRadius: "8px" }}
+            id="inline-jUF47jDJKHIMQIK6hQvG"
+            data-layout="{'id':'INLINE'}"
+            data-trigger-type="alwaysShow"
+            data-trigger-value=""
+            data-activation-type="alwaysActivated"
+            data-activation-value=""
+            data-deactivation-type="neverDeactivate"
+            data-deactivation-value=""
+            data-form-name="Contact Page Form"
+            data-height="652"
+            data-layout-iframe-id="inline-jUF47jDJKHIMQIK6hQvG"
+            data-form-id="jUF47jDJKHIMQIK6hQvG"
+            title="Contact Page Form"
+          />
+          <Script src="https://link.goleadflow.com/js/form_embed.js" strategy="afterInteractive" />
+        </div>
       </div>
     </div>
   );
