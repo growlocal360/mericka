@@ -31,6 +31,13 @@ export async function getSectorCards(): Promise<SectorCard[]> {
       .order("display_order", { ascending: true, nullsFirst: false })
   );
   if (db.length) {
+    // Separate lookup so a missing `category` column (before its migration
+    // runs) can't error out the whole sector list. DB value wins; brand.ts is
+    // the per-slug fallback.
+    const cats = await safeList<{ slug: string; category: string | null }>((sb) =>
+      sb.from("sectors").select("slug, category").eq("published", true)
+    );
+    const catMap = new Map(cats.map((c) => [c.slug, c.category]));
     return db.filter((s) => isValidSlug(s.slug)).map((s) => {
       const fb = sectorsFallback.find((f) => f.slug === s.slug);
       return {
@@ -39,7 +46,7 @@ export async function getSectorCards(): Promise<SectorCard[]> {
         icon: s.icon || fb?.icon || "Factory",
         description: fb?.description ?? "",
         cta: fb?.cta ?? "Learn more",
-        category: fb?.category ?? null,
+        category: catMap.get(s.slug) ?? fb?.category ?? null,
       };
     });
   }

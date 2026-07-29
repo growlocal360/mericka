@@ -117,6 +117,12 @@ export const ENTITIES: Record<EntityKey, EntityConfig> = {
       { name: "name", label: "Name", kind: "text", required: true },
       { name: "slug", label: "Slug", kind: "text", required: true },
       { name: "icon", label: "Lucide Icon Name", kind: "text" },
+      { name: "category", label: "Menu Category", kind: "select", options: [
+        { value: "Energy", label: "Energy" },
+        { value: "Advanced Industries", label: "Advanced Industries" },
+        { value: "Infrastructure & Government", label: "Infrastructure & Government" },
+        { value: "Manufacturing", label: "Manufacturing" },
+      ] },
       { name: "hero_image_url", label: "Hero Image", kind: "image" },
       { name: "intro_image_url", label: "Intro Section Image", kind: "image" },
       { name: "description", label: "Description", kind: "rich" },

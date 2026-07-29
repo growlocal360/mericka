@@ -184,7 +184,7 @@ export const marqueeImages = [
 ];
 
 export const heroImage =
-  "https://zeykdqgjsamlngfuimcp.supabase.co/storage/v1/object/public/uploads/hero_image_url/1781845766503-4iuga9.jpg";
+  "/images/mericka-group-downstream-oil-gas-services-home-hero.jpg";
 
 // Office locations. Fallback for the /locations page; the live list is managed
 // in the CMS (locations table).
