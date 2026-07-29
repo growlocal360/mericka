@@ -164,7 +164,7 @@ export const sectors = [
 
 export const stats = [
   { value: "9", label: "Years in business" },
-  { value: "6", label: "Sectors served" },
+  { value: "10", label: "Sectors served" },
   { value: "50+", label: "Projects completed" },
   { value: "0.0", label: "TRIR safety record" },
 ] as const;
