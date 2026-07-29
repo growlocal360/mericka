@@ -75,7 +75,7 @@ export const crafts = [
   {
     title: "Insulation",
     slug: "insulation",
-    img: "/images/pipes.jpg",
+    img: "/images/industrial-insulation-services-mericka-group.jpg",
     points: ["Hot & cold systems", "Removable blankets", "Jacketing"],
     cta: "Cut energy loss",
   },
