@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Linkedin, Facebook, Instagram, Phone, Mail, MapPin, ArrowRight } from "lucide-react";
+import { Linkedin, Facebook, Phone, Mail, MapPin, ArrowRight } from "lucide-react";
 import { brand, crafts as craftsFallback } from "@/lib/brand";
 import type { NavItem } from "@/lib/taxonomy";
 import GetInTouchButton from "@/components/GetInTouchButton";
@@ -105,13 +105,14 @@ export default function Footer({
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-brand-300">{brand.tagline}.</p>
             <div className="mt-6 flex items-center gap-3">
               {[
-                { Icon: Linkedin, label: "LinkedIn" },
-                { Icon: Facebook, label: "Facebook" },
-                { Icon: Instagram, label: "Instagram" },
-              ].map(({ Icon, label }) => (
+                { Icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/company/mericka-group/" },
+                { Icon: Facebook, label: "Facebook", href: "https://www.facebook.com/profile.php?id=100062961114719" },
+              ].map(({ Icon, label, href }) => (
                 <a
                   key={label}
-                  href="#"
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label={label}
                   className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-white/15 text-brand-200 transition hover:border-brand-highlight hover:bg-brand-highlight/20 hover:text-white"
                 >
