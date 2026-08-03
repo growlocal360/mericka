@@ -180,6 +180,9 @@ export default function Footer({
             <Link href="/privacy" className="text-brand-400 transition-colors hover:text-white">
               Privacy
             </Link>
+            <Link href="/terms" className="text-brand-400 transition-colors hover:text-white">
+              Terms
+            </Link>
           </div>
         </div>
       </div>
