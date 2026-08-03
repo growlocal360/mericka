@@ -19,7 +19,6 @@ const companyLinks = [
   { href: "/news", label: "News" },
   { href: "/projects", label: "Projects" },
   { href: "/locations", label: "Locations" },
-  { href: "/contact", label: "Contact" },
 ];
 
 export default function Navigation({
@@ -84,6 +83,12 @@ export default function Navigation({
             href="/company"
             items={companyLinks}
           />
+          <Link
+            href="/contact"
+            className="flex items-center px-4 py-2 text-brand-100 hover:text-white font-medium transition-colors"
+          >
+            Contact
+          </Link>
         </nav>
 
         <div className="hidden lg:flex items-center gap-4">
@@ -130,6 +135,13 @@ export default function Navigation({
               <MobileGroup label="Services" href="/energy-services" items={services.map((s) => ({ href: `/${s.slug}`, label: s.name }))} onClick={() => setMobileOpen(false)} />
               <MobileGroup label="Sectors" href="/sectors" groups={sectors} onClick={() => setMobileOpen(false)} />
               <MobileGroup label="Company" href="/company" items={companyLinks} onClick={() => setMobileOpen(false)} />
+              <Link
+                href="/contact"
+                onClick={() => setMobileOpen(false)}
+                className="border-b border-brand-800 py-4 text-white text-lg font-semibold"
+              >
+                Contact
+              </Link>
               <a href={brand.phoneHref} className="mt-6 flex items-center gap-2 text-brand-200 hover:text-brand-highlight transition-colors py-3">
                 <Phone className="w-5 h-5" /> {brand.phone}
               </a>
