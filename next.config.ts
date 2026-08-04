@@ -65,12 +65,10 @@ const nextConfig: NextConfig = {
       { source: "/data-center.html", destination: "/data-centers", permanent: true },
       { source: "/comprehensive-storage-tank", destination: "/comprehensive-storage-tank-services", permanent: true },
 
-      // Old service-area location pages → the Locations page.
+      // Old service-area location pages (nested under /service-area-locations/)
+      // → the Locations page. Wildcard covers every city sub-page.
       { source: "/service-area-locations", destination: "/locations", permanent: true },
-      { source: "/service-area-locations-houston-tx", destination: "/locations", permanent: true },
-      { source: "/service-area-locations-port-arthur-tx", destination: "/locations", permanent: true },
-      { source: "/service-area-locations-brownsville-tx", destination: "/locations", permanent: true },
-      { source: "/service-area-locations-gonzales-la", destination: "/locations", permanent: true },
+      { source: "/service-area-locations/:path*", destination: "/locations", permanent: true },
 
       // Old geo / service landing pages → the closest service or sector page.
       { source: "/austin-tx-data-center-painting", destination: "/industrial-coatings", permanent: true },
@@ -84,7 +82,7 @@ const nextConfig: NextConfig = {
       { source: "/data-center-soft-craft-labor-solutions-texas", destination: "/data-centers", permanent: true },
       { source: "/soft-craft-services-data-centers-san-antonio-tx", destination: "/data-centers", permanent: true },
       { source: "/semiconductor-facility-services-phoenix-az", destination: "/semiconductor", permanent: true },
-      { source: "/semiconductor-turnaround-support-phoenix-az", destination: "/semiconductor", permanent: true },
+      { source: "/semiconductor/turnaround-support-phoenix-az", destination: "/semiconductor", permanent: true },
     ];
   },
 };
