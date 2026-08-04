@@ -25,7 +25,7 @@ export default function LayoutWrapper({
       <Script
         src="https://widgets.leadconnectorhq.com/loader.js"
         data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js"
-        data-widget-id="6a355a29ab6f01632610e50a"
+        data-widget-id="6a720951d81ad928ff3699f6"
         strategy="lazyOnload"
       />
     </>
