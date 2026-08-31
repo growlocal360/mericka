@@ -39,7 +39,7 @@ export const services = [
     slug: "subcontracting-partnerships",
     img: "/images/scaffold-background-2.jpg",
     points: ["Soft-craft labor", "Schedule reliability", "A trusted ally"],
-    cta: "Partner with us",
+    cta: "Partner with Mericka",
   },
   {
     title: "Comprehensive Storage Tank Services",
@@ -151,7 +151,7 @@ export const sectors = [
     cta: "Step inside the fab" },
   { name: "Data Centers", slug: "data-centers", icon: "Cpu", category: "Advanced Industries",
     description: "Mission-critical hyperscale and colocation builds with no margin for delay.",
-    cta: "How we keep pace" },
+    cta: "Keep pace" },
   { name: "Aerospace", slug: "aerospace", icon: "Rocket", category: "Advanced Industries",
     description: "Engine, airframe, and component plants where delivery schedules leave no room for slip.",
     cta: "Hold the tolerance" },

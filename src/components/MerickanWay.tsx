@@ -8,17 +8,17 @@ const STEPS = [
   {
     n: "01",
     title: "Collaborate",
-    body: "We discover together where we can add value — and the financial impact that has on your bottom line.",
+    body: "Mericka works with you to find where it can add value — and the financial impact that has on your bottom line.",
   },
   {
     n: "02",
     title: "Plan",
-    body: "We identify a project that benefits from our value-add and provide a customized proposal and execution plan.",
+    body: "Mericka identifies a project that benefits from its value-add and provides a customized proposal and execution plan.",
   },
   {
     n: "03",
     title: "Execute",
-    body: "We start delivering results right away, leveraging Proprietary Software (EMMS) to monitor progress and drive continuous improvement.",
+    body: "Mericka starts delivering results right away, leveraging Proprietary Software (EMMS) to monitor progress and drive continuous improvement.",
   },
 ];
 

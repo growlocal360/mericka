@@ -25,7 +25,7 @@ export default function ServicesOverview() {
           </h2>
           <p className="mt-5 text-lg text-brand-600 leading-relaxed">
             Scaffold, paint, insulation, and fireproofing — the soft-craft
-            disciplines we self-perform across every sector we serve.
+            disciplines Mericka self-performs across every sector it serves.
           </p>
         </motion.div>
 

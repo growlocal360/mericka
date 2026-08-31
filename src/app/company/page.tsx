@@ -52,26 +52,25 @@ export default async function CompanyPage() {
             <p>
               Mericka Group is a leading industrial specialty contractor dedicated to
               delivering safe, reliable, and high-quality solutions for some of the
-              nation&apos;s most demanding industrial projects. Since our founding, we
-              have built our reputation on integrity, accountability, skilled
-              craftsmanship, and a commitment to exceeding our clients&apos;
-              expectations.
+              nation&apos;s most demanding industrial projects. Since its founding,
+              Mericka has built its reputation on integrity, accountability, skilled
+              craftsmanship, and a commitment to exceeding client expectations.
             </p>
             <p>
-              Our experienced leadership team brings decades of industrial expertise
-              across construction, maintenance, turnarounds, shutdowns, capital
-              projects, and specialty industrial services. By combining self-performed
-              capabilities with disciplined project management and a highly trained
-              workforce, we help clients improve productivity, reduce risk, protect
-              critical assets, and complete projects safely, efficiently, and on
-              schedule.
+              Mericka&apos;s experienced leadership team brings decades of industrial
+              expertise across construction, maintenance, turnarounds, shutdowns,
+              capital projects, and specialty industrial services. By combining
+              self-performed capabilities with disciplined project management and a
+              highly trained workforce, Mericka helps clients improve productivity,
+              reduce risk, protect critical assets, and complete projects safely,
+              efficiently, and on schedule.
             </p>
             <p>
-              At Mericka Group, we believe lasting partnerships are built through
-              trust, communication, and consistent performance. Every project is
-              guided by our commitment to operational excellence, continuous
-              improvement, and delivering value for our clients, employees, and the
-              communities we serve.
+              At Mericka Group, lasting partnerships are built through trust,
+              communication, and consistent performance. Every project is guided by a
+              commitment to operational excellence, continuous improvement, and
+              delivering value for the clients, employees, and communities Mericka
+              serves.
             </p>
           </div>
         </header>

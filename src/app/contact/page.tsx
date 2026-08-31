@@ -12,7 +12,7 @@ export default function ContactPage() {
           <span className="text-sm tracking-wider font-semibold text-brand-accent uppercase">Contact</span>
           <h1 className="mt-3 text-5xl font-bold text-brand-900">Get in touch</h1>
           <p className="mt-5 text-lg text-brand-600 leading-relaxed">
-            Tell us about your scope, schedule, and safety targets. We&apos;ll be in touch within one business day.
+            Tell Mericka Group about your scope, schedule, and safety targets. Mericka will be in touch within one business day.
           </p>
 
           <div className="mt-10 space-y-5">

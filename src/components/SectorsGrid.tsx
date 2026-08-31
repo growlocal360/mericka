@@ -51,7 +51,7 @@ export default function SectorsGrid({
           </span>
           <h2 className="mt-3 text-4xl sm:text-5xl font-bold text-brand-900">Built for the sectors that can&apos;t stop</h2>
           <p className="mt-5 text-lg text-brand-600 leading-relaxed">
-            We work in high-stakes industrial environments where safety, schedule,
+            Mericka works in high-stakes industrial environments where safety, schedule,
             and quality each carry real consequences.
           </p>
         </motion.div>

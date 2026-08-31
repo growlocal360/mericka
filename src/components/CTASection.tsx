@@ -19,8 +19,8 @@ export default function CTASection() {
             Ready to scope your next turnaround or build?
           </h2>
           <p className="mt-5 text-lg text-brand-950/80 max-w-2xl mx-auto">
-            Tell us about your site, your schedule, and your safety targets. We&apos;ll come back
-            with a constructable plan.
+            Tell Mericka about your site, your schedule, and your safety targets. Mericka will
+            come back with a constructable plan.
           </p>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
             <GetInTouchButton />
