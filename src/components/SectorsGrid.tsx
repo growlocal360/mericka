@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, Waves, FlaskConical, Rocket, Cpu, Microchip, Droplet, Factory, Building2, Zap, Flame, UtensilsCrossed, Landmark, LucideIcon } from "lucide-react";
+import { ArrowRight, Waves, FlaskConical, Rocket, Cpu, Microchip, Droplet, Factory, Building2, Zap, Flame, UtensilsCrossed, Landmark, Pill, LucideIcon } from "lucide-react";
 import { sectors as sectorsFallback } from "@/lib/brand";
 import type { SectorCard } from "@/lib/taxonomy";
 
@@ -20,6 +20,7 @@ const iconMap: Record<string, LucideIcon> = {
   Flame,
   UtensilsCrossed,
   Landmark,
+  Pill,
 };
 
 export default function SectorsGrid({

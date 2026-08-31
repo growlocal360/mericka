@@ -79,7 +79,8 @@ export default function SectorBody({
                   alt={sector.name}
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
-                  className="object-cover"
+                  unoptimized={introImage.endsWith(".svg")}
+                  className={introImage.endsWith(".svg") ? "object-contain p-10" : "object-cover"}
                 />
               </motion.div>
             )}

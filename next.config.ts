@@ -34,10 +34,8 @@ const nextConfig: NextConfig = {
       { source: "/semiconductor/scaffolding-access-solutions", destination: "/semiconductor/scaffolding-and-access-solutions", permanent: true },
       { source: "/downstream-oil-and-gas-market/scaffolding-and-access-solutions", destination: "/downstream-oil-gas/scaffolding-and-access-solutions", permanent: true },
 
-      // "Aerospace" is retired entirely — everything under it goes to its
-      // replacement sector, Advanced Manufacturing.
-      { source: "/aerospace", destination: "/advanced-manufacturing", permanent: true },
-      { source: "/aerospace/:path*", destination: "/advanced-manufacturing", permanent: true },
+      // Aerospace is a live sector again; only its old sub-pages redirect to it.
+      { source: "/aerospace/:path*", destination: "/aerospace", permanent: true },
 
       // Retired sector × service pages → the parent sector page.
       { source: "/:sector(downstream-oil-gas|petrochemical|semiconductor)/turnaround-and-outage-support", destination: "/:sector", permanent: true },

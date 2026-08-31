@@ -152,6 +152,12 @@ export const sectors = [
   { name: "Data Centers", slug: "data-centers", icon: "Cpu", category: "Advanced Industries",
     description: "Mission-critical hyperscale and colocation builds with no margin for delay.",
     cta: "How we keep pace" },
+  { name: "Aerospace", slug: "aerospace", icon: "Rocket", category: "Advanced Industries",
+    description: "Engine, airframe, and component plants where delivery schedules leave no room for slip.",
+    cta: "Hold the tolerance" },
+  { name: "Pharmaceutical", slug: "pharmaceutical", icon: "Pill", category: "Advanced Industries",
+    description: "Cleanroom-adjacent production environments where contamination control and documentation govern every scope.",
+    cta: "Protect the batch" },
   // --- Infrastructure & Government ---
   { name: "Government Sector", slug: "government-sector", icon: "Building2", category: "Infrastructure & Government",
     description: "Public facilities and infrastructure delivered to spec, on schedule, and to code.",
