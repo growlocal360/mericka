@@ -34,9 +34,9 @@ export default function MerickanWay() {
           className="mb-12 max-w-3xl"
         >
           <span className="text-sm tracking-wider font-semibold text-brand-accent uppercase">
-            Our Process
+            The Process
           </span>
-          <h2 className="mt-3 text-4xl sm:text-5xl font-bold text-white">The Merickan Way</h2>
+          <h2 className="mt-3 text-4xl sm:text-5xl font-bold text-white">How Mericka Delivers</h2>
         </motion.div>
         <div className="grid md:grid-cols-3 gap-8">
           {STEPS.map((step, i) => (
